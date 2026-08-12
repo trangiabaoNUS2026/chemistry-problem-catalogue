@@ -4,23 +4,26 @@ on:
     branches:
       - main
     paths:
-      - 'data/**.json' # Only runs when a JSON file in the data folder is added/changed
+      - 'data/**.json'
+
+permissions:
+  contents: write # Crucial: Allows the bot to save the merged file
 
 jobs:
   merge:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Merge all JSON files in the data folder
         run: |
           jq -s 'flatten' data/*.json > merged_database.json
-          
+
       - name: Save the merged file back to GitHub
         run: |
           git config --global user.name 'GitHub Action'
           git config --global user.email 'action@github.com'
           git add merged_database.json
-          git commit -m "Auto-merged new Olympiad data" || echo "No changes to commit"
+          git commit -m "Auto-merged Olympiad data" || echo "No changes to commit"
           git push
