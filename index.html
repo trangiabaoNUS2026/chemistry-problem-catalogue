@@ -1,2051 +1,505 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Global Chemistry Olympiad Archive</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink: #0d1117;
+    --panel: #151b23;
+    --panel-2: #1b232e;
+    --line: #2a3441;
+    --paper: #e9e4d8;
+    --gold: #c99a3c;
+    --gold-soft: #7a6329;
+    --teal: #4fb8ab;
+    --teal-soft: #2b4b47;
+    --rust: #b8613f;
+  }
+  *{ box-sizing: border-box; }
+  body{
+    background-color: var(--ink);
+    background-image:
+      radial-gradient(circle at 1px 1px, rgba(233,228,216,0.045) 1px, transparent 0);
+    background-size: 26px 26px;
+    font-family: 'Inter', sans-serif;
+    color: var(--paper);
+  }
+  .font-display{ font-family: 'Fraunces', serif; }
+  .font-mono{ font-family: 'IBM Plex Mono', monospace; }
 
-  <title>Global Chemistry Olympiad Archive</title>
-  <meta
-    name="description"
-    content="A searchable archive of Chemistry Olympiad problems from around the world."
-  />
+  ::selection{ background: var(--gold); color: #14100a; }
 
-  <script src="https://cdn.tailwindcss.com"></script>
+  /* scrollbar */
+  ::-webkit-scrollbar{ width: 10px; height: 10px; }
+  ::-webkit-scrollbar-track{ background: var(--ink); }
+  ::-webkit-scrollbar-thumb{ background: #33404f; border-radius: 8px; }
 
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: {
-            sans: [
-              "Inter",
-              "ui-sans-serif",
-              "system-ui",
-              "-apple-system",
-              "BlinkMacSystemFont",
-              "Segoe UI",
-              "sans-serif"
-            ]
-          },
-          boxShadow: {
-            soft: "0 12px 40px rgba(15, 23, 42, 0.08)"
-          }
-        }
-      }
-    };
-  </script>
+  .hairline{ border-color: var(--line); }
 
-  <style>
-    html {
-      scroll-behavior: smooth;
-    }
+  .label-tag{
+    position: relative;
+    background: var(--panel-2);
+    border: 1px solid var(--line);
+  }
+  .label-tag::before{
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: -5px;
+    width: 9px;
+    height: 9px;
+    background: var(--ink);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    transform: translateY(-50%);
+  }
 
-    body {
-      background:
-        radial-gradient(
-          circle at 5% 0%,
-          rgba(99, 102, 241, 0.10),
-          transparent 28rem
-        ),
-        radial-gradient(
-          circle at 95% 5%,
-          rgba(14, 165, 233, 0.08),
-          transparent 28rem
-        ),
-        #f8fafc;
-    }
+  .card{
+    background: linear-gradient(180deg, var(--panel) 0%, var(--panel-2) 100%);
+    border: 1px solid var(--line);
+    transition: transform .35s cubic-bezier(.2,.8,.2,1), border-color .35s ease, box-shadow .35s ease, opacity .3s ease;
+  }
+  .card:hover{
+    transform: translateY(-3px);
+    border-color: #445064;
+    box-shadow: 0 18px 40px -20px rgba(0,0,0,0.6);
+  }
 
-    .glass {
-      background: rgba(255, 255, 255, 0.88);
-      backdrop-filter: blur(18px);
-      -webkit-backdrop-filter: blur(18px);
-    }
+  .card-enter{
+    animation: cardIn .45s cubic-bezier(.2,.8,.2,1) both;
+  }
+  @keyframes cardIn{
+    from{ opacity: 0; transform: translateY(10px) scale(.98); }
+    to{ opacity: 1; transform: translateY(0) scale(1); }
+  }
+  .fade-hide{ display:none !important; }
 
-    .problem-card {
-      animation: cardIn 240ms ease-out both;
-      transition:
-        transform 180ms ease,
-        box-shadow 180ms ease,
-        border-color 180ms ease;
-    }
+  .pill{
+    font-family: 'IBM Plex Mono', monospace;
+    letter-spacing: .01em;
+  }
 
-    .problem-card:hover {
-      transform: translateY(-3px);
-      border-color: rgba(99, 102, 241, 0.28);
-      box-shadow: 0 18px 45px rgba(15, 23, 42, 0.11);
-    }
+  select, input{
+    background-color: var(--panel-2);
+  }
+  select:focus, input:focus{
+    outline: 2px solid var(--teal);
+    outline-offset: 1px;
+  }
 
-    @keyframes cardIn {
-      from {
-        opacity: 0;
-        transform: translateY(8px);
-      }
+  .btn-open{
+    background: var(--teal);
+    color: #08211d;
+  }
+  .btn-open:hover{ background: #63cabd; }
 
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
+  .quick-btn{
+    border: 1px solid var(--line);
+    color: #b7c0cc;
+    transition: all .2s ease;
+  }
+  .quick-btn.active{
+    background: var(--gold);
+    border-color: var(--gold);
+    color: #1c1305;
+  }
+  .quick-btn:not(.active):hover{
+    border-color: var(--gold-soft);
+    color: var(--paper);
+  }
 
-    .line-clamp-2 {
-      display: -webkit-box;
-      -webkit-line-clamp: 2;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
-    }
+  .hex-bg{
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='84' height='48' viewBox='0 0 84 48'%3E%3Cg fill='none' stroke='%23c99a3c' stroke-opacity='0.16' stroke-width='1'%3E%3Cpath d='M21 0L42 12L42 36L21 48L0 36L0 12Z'/%3E%3Cpath d='M63 0L84 12L84 36L63 48L42 36L42 12Z'/%3E%3C/g%3E%3C/svg%3E");
+    background-size: 84px 48px;
+  }
 
-    .line-clamp-3 {
-      display: -webkit-box;
-      -webkit-line-clamp: 3;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
-    }
+  .focus-ring:focus-visible{
+    outline: 2px solid var(--teal);
+    outline-offset: 2px;
+  }
 
-    .custom-scrollbar::-webkit-scrollbar {
-      width: 7px;
-      height: 7px;
-    }
-
-    .custom-scrollbar::-webkit-scrollbar-track {
-      background: transparent;
-    }
-
-    .custom-scrollbar::-webkit-scrollbar-thumb {
-      background: #cbd5e1;
-      border-radius: 999px;
-    }
-
-    .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-      background: #94a3b8;
-    }
-
-    .search-glow:focus {
-      box-shadow:
-        0 0 0 4px rgba(99, 102, 241, 0.10),
-        0 8px 25px rgba(15, 23, 42, 0.05);
-    }
-  </style>
+  @media (prefers-reduced-motion: reduce){
+    .card, .card-enter{ animation: none !important; transition: none !important; }
+  }
+</style>
 </head>
+<body class="min-h-screen">
 
-<body class="min-h-screen text-slate-900">
-
-  <!-- =========================================================
-       HEADER
-  ========================================================== -->
-  <header class="sticky top-0 z-50 border-b border-slate-200/80 glass">
-    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-      <div class="flex min-h-[78px] items-center gap-4">
-
-        <!-- Logo -->
-        <div class="flex min-w-0 shrink-0 items-center gap-3">
-          <div
-            class="flex h-11 w-11 items-center justify-center rounded-2xl bg-indigo-600 text-white shadow-lg shadow-indigo-200"
-            aria-hidden="true"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="23"
-              height="23"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="1.8"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            >
-              <path d="M10 2v7.31a7 7 0 0 1-1.1 3.78L5.5 18.5A2.5 2.5 0 0 0 7.65 22h8.7a2.5 2.5 0 0 0 2.15-3.5l-3.4-5.41A7 7 0 0 1 14 9.31V2" />
-              <path d="M8 2h8" />
-              <path d="M7.5 16h9" />
-            </svg>
-          </div>
-
-          <div class="min-w-0">
-            <h1 class="truncate text-base font-extrabold tracking-tight text-slate-950 sm:text-lg">
-              Global Chemistry Olympiad Archive
-            </h1>
-
-            <p class="hidden text-xs font-medium text-slate-500 sm:block">
-              A global directory of Chemistry Olympiad problems
-            </p>
-          </div>
-        </div>
-
-        <!-- Search -->
-        <div class="relative ml-auto w-full max-w-2xl">
-          <label for="searchInput" class="sr-only">
-            Search Chemistry Olympiad problems
-          </label>
-
-          <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-4 text-slate-400">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="19"
-              height="19"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            >
-              <circle cx="11" cy="11" r="8"></circle>
-              <path d="m21 21-4.3-4.3"></path>
-            </svg>
-          </div>
-
-          <input
-            id="searchInput"
-            type="search"
-            autocomplete="off"
-            placeholder="Search problems, reactions, themes, compounds, skills..."
-            class="search-glow h-12 w-full rounded-2xl border border-slate-200 bg-white/95 pl-11 pr-11 text-sm font-medium text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-indigo-400"
-          />
-
-          <button
-            id="clearSearch"
-            type="button"
-            aria-label="Clear search"
-            class="absolute inset-y-0 right-0 hidden items-center pr-4 text-slate-400 transition hover:text-slate-700"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="18"
-              height="18"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            >
-              <circle cx="12" cy="12" r="9"></circle>
-              <path d="m15 9-6 6"></path>
-              <path d="m9 9 6 6"></path>
-            </svg>
-          </button>
-        </div>
-      </div>
+<!-- HEADER -->
+<header class="relative border-b hairline overflow-hidden">
+  <div class="absolute inset-0 hex-bg opacity-60 pointer-events-none"></div>
+  <div class="absolute inset-0 bg-gradient-to-b from-transparent via-[#0d1117]/40 to-[#0d1117] pointer-events-none"></div>
+  <div class="relative max-w-7xl mx-auto px-5 sm:px-8 pt-10 pb-8">
+    <div class="flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.25em] text-[color:var(--gold)] mb-3">
+      <span>Vol. I</span>
+      <span class="w-1 h-1 rounded-full bg-[color:var(--gold)]"></span>
+      <span id="catalog-year-range">Catalog of Record</span>
+      <span class="w-1 h-1 rounded-full bg-[color:var(--gold)]"></span>
+      <span>Est. Problems Archive</span>
     </div>
-  </header>
+    <h1 class="font-display font-semibold text-4xl sm:text-5xl md:text-6xl leading-[1.05] text-[color:var(--paper)]">
+      Global Chemistry<br class="hidden sm:block"> Olympiad Archive
+    </h1>
+    <p class="mt-4 max-w-xl text-sm sm:text-base text-[#9aa5b1] font-normal">
+      A cross-indexed reference of Olympiad chemistry problems — searchable by reaction, target, technique, and origin.
+    </p>
 
-
-  <!-- =========================================================
-       MAIN CONTENT
-  ========================================================== -->
-  <main class="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
-
-    <!-- Intro -->
-    <section class="mb-7">
-      <div class="max-w-3xl">
-
-        <div class="mb-3 inline-flex items-center gap-2 rounded-full border border-indigo-100 bg-indigo-50 px-3 py-1.5 text-xs font-bold text-indigo-700">
-          <span class="h-1.5 w-1.5 rounded-full bg-indigo-500"></span>
-          Chemistry Olympiad Database
-        </div>
-
-        <h2 class="text-3xl font-extrabold tracking-tight text-slate-950 sm:text-4xl">
-          Explore Chemistry Olympiad Problems
-        </h2>
-
-        <p class="mt-3 text-sm leading-6 text-slate-500 sm:text-base">
-          Search problems by topic, reaction, compound, skill, country,
-          olympiad, year, or problem type.
-        </p>
+    <!-- SEARCH -->
+    <div class="mt-8 relative max-w-2xl">
+      <div class="absolute left-4 top-1/2 -translate-y-1/2 text-[#7c8a99] pointer-events-none">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35m0 0A7.5 7.5 0 104.5 4.5a7.5 7.5 0 0012.15 12.15z" />
+        </svg>
       </div>
-    </section>
-
-
-    <!-- =======================================================
-         FILTER PANEL
-    ======================================================== -->
-    <section
-      class="mb-8 rounded-3xl border border-slate-200 bg-white p-5 shadow-soft sm:p-6"
-      aria-label="Problem filters"
-    >
-
-      <div class="mb-5 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-
-        <div>
-          <h3 class="text-sm font-bold text-slate-900">
-            Filter problems
-          </h3>
-
-          <p class="mt-1 text-xs text-slate-500">
-            Combine subject and competition filters to narrow the archive.
-          </p>
-        </div>
-
-        <button
-          id="resetFilters"
-          type="button"
-          class="inline-flex w-fit items-center gap-2 rounded-xl border border-slate-200 bg-white px-3.5 py-2 text-xs font-bold text-slate-600 transition hover:border-slate-300 hover:bg-slate-50 hover:text-slate-900"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="15"
-            height="15"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <path d="M3 12a9 9 0 1 0 3-6.7"></path>
-            <path d="M3 4v5h5"></path>
-          </svg>
-
-          Reset All Filters
-        </button>
-      </div>
-
-
-      <!-- Subset -->
-      <div class="mb-5">
-        <label class="mb-2 block text-[11px] font-bold uppercase tracking-wider text-slate-400">
-          Subject subset
-        </label>
-
-        <div
-          id="subsetButtons"
-          class="flex flex-wrap gap-2"
-          role="group"
-          aria-label="Subject subset"
-        ></div>
-      </div>
-
-
-      <!-- Dropdown filters -->
-      <div class="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
-
-        <div>
-          <label
-            for="nationFilter"
-            class="mb-1.5 block text-xs font-semibold text-slate-500"
-          >
-            Nation
-          </label>
-
-          <select
-            id="nationFilter"
-            class="filter-select w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-2.5 text-sm font-medium text-slate-700 outline-none transition focus:border-indigo-400 focus:bg-white focus:ring-4 focus:ring-indigo-100"
-          >
-            <option value="">All nations</option>
-          </select>
-        </div>
-
-
-        <div>
-          <label
-            for="olympiadFilter"
-            class="mb-1.5 block text-xs font-semibold text-slate-500"
-          >
-            Olympiad
-          </label>
-
-          <select
-            id="olympiadFilter"
-            class="filter-select w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-2.5 text-sm font-medium text-slate-700 outline-none transition focus:border-indigo-400 focus:bg-white focus:ring-4 focus:ring-indigo-100"
-          >
-            <option value="">All olympiads</option>
-          </select>
-        </div>
-
-
-        <div>
-          <label
-            for="yearFilter"
-            class="mb-1.5 block text-xs font-semibold text-slate-500"
-          >
-            Year
-          </label>
-
-          <select
-            id="yearFilter"
-            class="filter-select w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-2.5 text-sm font-medium text-slate-700 outline-none transition focus:border-indigo-400 focus:bg-white focus:ring-4 focus:ring-indigo-100"
-          >
-            <option value="">All years</option>
-          </select>
-        </div>
-
-
-        <div>
-          <label
-            for="problemTypeFilter"
-            class="mb-1.5 block text-xs font-semibold text-slate-500"
-          >
-            Problem type
-          </label>
-
-          <select
-            id="problemTypeFilter"
-            class="filter-select w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-2.5 text-sm font-medium text-slate-700 outline-none transition focus:border-indigo-400 focus:bg-white focus:ring-4 focus:ring-indigo-100"
-          >
-            <option value="">All problem types</option>
-          </select>
-        </div>
-
-      </div>
-    </section>
-
-
-    <!-- =======================================================
-         RESULTS TOOLBAR
-    ======================================================== -->
-    <section class="mb-5 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
-
-      <div>
-        <p
-          id="resultsCount"
-          class="text-sm font-bold text-slate-700"
-        >
-          Loading problems...
-        </p>
-
-        <p
-          id="activeFilters"
-          class="mt-1 hidden text-xs text-slate-400"
-        ></p>
-      </div>
-
-      <div
-        id="databaseStatus"
-        class="inline-flex items-center gap-2 self-start rounded-full bg-slate-100 px-3 py-1.5 text-xs font-semibold text-slate-500 sm:self-auto"
-      >
-        <span class="h-1.5 w-1.5 animate-pulse rounded-full bg-slate-400"></span>
-        Loading database
-      </div>
-    </section>
-
-
-    <!-- =======================================================
-         LOADING STATE
-    ======================================================== -->
-    <section id="loadingState" class="py-10">
-      <div class="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
-
-        <div class="h-[430px] animate-pulse rounded-3xl border border-slate-200 bg-white"></div>
-
-        <div class="h-[430px] animate-pulse rounded-3xl border border-slate-200 bg-white"></div>
-
-        <div class="h-[430px] animate-pulse rounded-3xl border border-slate-200 bg-white"></div>
-
-      </div>
-    </section>
-
-
-    <!-- =======================================================
-         ERROR STATE
-    ======================================================== -->
-    <section id="errorState" class="hidden py-12">
-
-      <div class="mx-auto max-w-xl rounded-3xl border border-amber-200 bg-white p-8 text-center shadow-soft">
-
-        <div class="mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-amber-50 text-amber-600">
-
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="27"
-            height="27"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="1.7"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <circle cx="12" cy="12" r="9"></circle>
-            <path d="M12 8v4"></path>
-            <path d="M12 16h.01"></path>
-          </svg>
-
-        </div>
-
-        <h3 class="text-lg font-extrabold text-slate-900">
-          The problem database is not available yet
-        </h3>
-
-        <p
-          id="errorMessage"
-          class="mx-auto mt-2 max-w-md text-sm leading-6 text-slate-500"
-        >
-          We couldn't load merged_database.json.
-          The GitHub Action may still be generating it.
-        </p>
-
-        <div class="mt-5 flex flex-col justify-center gap-2 sm:flex-row">
-
-          <button
-            id="retryButton"
-            type="button"
-            class="rounded-xl bg-indigo-600 px-5 py-2.5 text-sm font-bold text-white shadow-sm transition hover:bg-indigo-700 focus:outline-none focus:ring-4 focus:ring-indigo-100"
-          >
-            Try Again
-          </button>
-
-          <button
-            id="errorRefreshButton"
-            type="button"
-            class="rounded-xl border border-slate-200 bg-white px-5 py-2.5 text-sm font-bold text-slate-600 transition hover:bg-slate-50"
-          >
-            Refresh Page
-          </button>
-
-        </div>
-
-      </div>
-    </section>
-
-
-    <!-- =======================================================
-         RESULTS GRID
-    ======================================================== -->
-    <section
-      id="resultsGrid"
-      class="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3"
-      aria-live="polite"
-    ></section>
-
-
-    <!-- =======================================================
-         EMPTY STATE
-    ======================================================== -->
-    <section id="emptyState" class="hidden py-16">
-
-      <div class="mx-auto max-w-lg text-center">
-
-        <div class="mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-3xl bg-slate-100 text-slate-400">
-
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="29"
-            height="29"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="1.6"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <circle cx="11" cy="11" r="7"></circle>
-            <path d="m20 20-4-4"></path>
-            <path d="M8.5 8.5 13.5 13.5"></path>
-            <path d="m13.5 8.5-5 5"></path>
-          </svg>
-
-        </div>
-
-        <h3 class="text-lg font-extrabold text-slate-900">
-          No problems found
-        </h3>
-
-        <p class="mt-2 text-sm leading-6 text-slate-500">
-          No problems match your current search and filters.
-          Try another keyword or clear your filters.
-        </p>
-
-        <button
-          id="emptyResetButton"
-          type="button"
-          class="mt-5 rounded-xl bg-indigo-600 px-5 py-2.5 text-sm font-bold text-white transition hover:bg-indigo-700"
-        >
-          Clear Search & Filters
-        </button>
-
-      </div>
-    </section>
-
-  </main>
-
-
-  <!-- =========================================================
-       FOOTER
-  ========================================================== -->
-  <footer class="mt-12 border-t border-slate-200 bg-white/70">
-
-    <div class="mx-auto flex max-w-7xl flex-col gap-2 px-4 py-7 text-xs text-slate-400 sm:flex-row sm:items-center sm:justify-between sm:px-6 lg:px-8">
-
-      <p class="font-medium">
-        Global Chemistry Olympiad Archive
-      </p>
-
-      <p>
-        Searchable archive of Chemistry Olympiad problems
-      </p>
-
+      <input id="search-input" type="text"
+        placeholder="Search titles, named reactions, targets, themes, skills…"
+        class="w-full pl-12 pr-4 py-3.5 rounded-md border hairline text-[color:var(--paper)] placeholder-[#6b7684] text-sm sm:text-base focus-ring transition"
+        autocomplete="off">
+    </div>
+  </div>
+</header>
+
+<!-- FILTERS -->
+<section class="border-b hairline bg-[color:var(--panel)]/40 backdrop-blur-sm sticky top-0 z-20">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8 py-4">
+
+    <!-- Quick subset select -->
+    <div class="flex flex-wrap items-center gap-2 mb-4" id="subset-buttons" role="group" aria-label="Filter by subset">
+      <!-- populated by JS -->
     </div>
 
-  </footer>
+    <div class="flex flex-wrap items-end gap-3">
+      <div class="flex flex-col gap-1">
+        <label for="filter-nation" class="font-mono text-[10px] uppercase tracking-widest text-[#7c8a99]">Nation</label>
+        <select id="filter-nation" class="border hairline rounded px-3 py-2 text-sm text-[color:var(--paper)] focus-ring min-w-[140px]">
+          <option value="">All Nations</option>
+        </select>
+      </div>
+      <div class="flex flex-col gap-1">
+        <label for="filter-olympiad" class="font-mono text-[10px] uppercase tracking-widest text-[#7c8a99]">Olympiad</label>
+        <select id="filter-olympiad" class="border hairline rounded px-3 py-2 text-sm text-[color:var(--paper)] focus-ring min-w-[160px]">
+          <option value="">All Olympiads</option>
+        </select>
+      </div>
+      <div class="flex flex-col gap-1">
+        <label for="filter-year" class="font-mono text-[10px] uppercase tracking-widest text-[#7c8a99]">Year</label>
+        <select id="filter-year" class="border hairline rounded px-3 py-2 text-sm text-[color:var(--paper)] focus-ring min-w-[100px]">
+          <option value="">All Years</option>
+        </select>
+      </div>
+      <div class="flex flex-col gap-1">
+        <label for="filter-type" class="font-mono text-[10px] uppercase tracking-widest text-[#7c8a99]">Problem Type</label>
+        <select id="filter-type" class="border hairline rounded px-3 py-2 text-sm text-[color:var(--paper)] focus-ring min-w-[140px]">
+          <option value="">All Types</option>
+        </select>
+      </div>
 
+      <button id="reset-filters"
+        class="ml-auto ide font-mono text-xs uppercase tracking-widest px-4 py-2.5 rounded border hairline text-[#b7c0cc] hover:text-[color:var(--rust)] hover:border-[color:var(--rust)] transition focus-ring">
+        Reset All Filters
+      </button>
+    </div>
 
-  <!-- =========================================================
-       JAVASCRIPT
-  ========================================================== -->
-  <script>
-    "use strict";
+    <div class="mt-4 flex items-center justify-between">
+      <p id="results-counter" class="font-mono text-xs text-[#7c8a99]">Showing 0 of 0 problems</p>
+    </div>
+  </div>
+</section>
 
-    /*
-     * ==========================================================
-     * DATA SOURCE
-     * ==========================================================
-     *
-     * GitHub Actions generates this file at the repository root.
-     *
-     * Example repository:
-     *
-     * /
-     * ├── index.html
-     * ├── merged_database.json
-     * ├── data/
-     * └── pdfs/
-     *
-     * The browser therefore fetches:
-     *
-     *     ./merged_database.json
-     */
+<!-- MAIN -->
+<main class="max-w-7xl mx-auto px-5 sm:px-8 py-10">
 
-    const DATA_URL = "./merged_database.json";
+  <div id="loading-state" class="flex flex-col items-center justify-center py-28 text-center">
+    <div class="h-10 w-10 rounded-full border-2 border-[color:var(--teal)] border-t-transparent animate-spin mb-5"></div>
+    <p class="font-mono text-sm text-[#9aa5b1]">Retrieving merged_database.json…</p>
+  </div>
 
+  <div id="error-state" class="hidden flex-col items-center justify-center py-24 text-center border hairline rounded-lg bg-[color:var(--panel)]">
+    <div class="text-[color:var(--rust)] mb-4">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z" />
+      </svg>
+    </div>
+    <h2 class="font-display text-xl text-[color:var(--paper)] mb-2">The archive did not load</h2>
+    <p class="text-sm text-[#9aa5b1] max-w-md mx-auto">
+      <code class="font-mono text-[color:var(--gold)]">merged_database.json</code> could not be fetched. Confirm the GitHub Action has generated the merged file at the repository root, then reload this page.
+    </p>
+  </div>
 
-    /*
-     * ==========================================================
-     * APPLICATION STATE
-     * ==========================================================
-     */
+  <div id="empty-state" class="hidden flex-col items-center justify-center py-24 text-center border hairline rounded-lg bg-[color:var(--panel)]">
+    <div class="text-[color:var(--gold)] mb-4">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35m0 0A7.5 7.5 0 104.5 4.5a7.5 7.5 0 0012.15 12.15z" />
+      </svg>
+    </div>
+    <h2 class="font-display text-xl text-[color:var(--paper)] mb-2">No entries match</h2>
+    <p class="text-sm text-[#9aa5b1] max-w-md mx-auto">Nothing in the archive fits this combination of search and filters. Loosen a filter or clear the search to see more results.</p>
+    <button id="empty-reset" class="mt-5 font-mono text-xs uppercase tracking-widest px-4 py-2.5 rounded border hairline text-[color:var(--teal)] hover:bg-[color:var(--teal)]/10 transition focus-ring">
+      Reset All Filters
+    </button>
+  </div>
 
-    let allProblems = [];
+  <div id="grid" class="hidden grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5"></div>
+</main>
 
-    let filteredProblems = [];
+<footer class="border-t hairline mt-10">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8 py-6 font-mono text-[11px] text-[#5c6773] flex flex-wrap justify-between gap-2">
+    <span>Global Chemistry Olympiad Archive</span>
+    <span>Source PDFs served from <code class="text-[#7c8a99]">/pdfs</code></span>
+  </div>
+</footer>
 
-    const state = {
-      search: "",
-      subset: "",
-      nation: "",
-      olympiad: "",
-      year: "",
-      problemType: ""
-    };
+<script>
+(function(){
+  const state = {
+    all: [],
+    subset: 'All',
+    nation: '',
+    olympiad: '',
+    year: '',
+    type: '',
+    query: ''
+  };
 
+  const SUBSETS = ['All', 'Organic', 'Physical', 'Inorganic', 'Analytical', 'Biochemistry'];
 
-    /*
-     * ==========================================================
-     * DOM REFERENCES
-     * ==========================================================
-     */
+  const els = {
+    subsetButtons: document.getElementById('subset-buttons'),
+    nation: document.getElementById('filter-nation'),
+    olympiad: document.getElementById('filter-olympiad'),
+    year: document.getElementById('filter-year'),
+    type: document.getElementById('filter-type'),
+    reset: document.getElementById('reset-filters'),
+    emptyReset: document.getElementById('empty-reset'),
+    search: document.getElementById('search-input'),
+    counter: document.getElementById('results-counter'),
+    grid: document.getElementById('grid'),
+    loading: document.getElementById('loading-state'),
+    error: document.getElementById('error-state'),
+    empty: document.getElementById('empty-state'),
+    yearRange: document.getElementById('catalog-year-range')
+  };
 
-    const searchInput =
-      document.getElementById("searchInput");
+  function esc(str){
+    if(str === null || str === undefined) return '';
+    return String(str)
+      .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+      .replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+  }
 
-    const clearSearch =
-      document.getElementById("clearSearch");
+  function uniqueSorted(arr){
+    return [...new Set(arr.filter(v => v !== null && v !== undefined && v !== ''))]
+      .sort((a,b) => (typeof a === 'number' && typeof b === 'number') ? a-b : String(a).localeCompare(String(b)));
+  }
 
-    const subsetButtons =
-      document.getElementById("subsetButtons");
-
-    const nationFilter =
-      document.getElementById("nationFilter");
-
-    const olympiadFilter =
-      document.getElementById("olympiadFilter");
-
-    const yearFilter =
-      document.getElementById("yearFilter");
-
-    const problemTypeFilter =
-      document.getElementById("problemTypeFilter");
-
-    const resetFilters =
-      document.getElementById("resetFilters");
-
-    const emptyResetButton =
-      document.getElementById("emptyResetButton");
-
-    const resultsGrid =
-      document.getElementById("resultsGrid");
-
-    const resultsCount =
-      document.getElementById("resultsCount");
-
-    const activeFilters =
-      document.getElementById("activeFilters");
-
-    const loadingState =
-      document.getElementById("loadingState");
-
-    const emptyState =
-      document.getElementById("emptyState");
-
-    const errorState =
-      document.getElementById("errorState");
-
-    const errorMessage =
-      document.getElementById("errorMessage");
-
-    const retryButton =
-      document.getElementById("retryButton");
-
-    const errorRefreshButton =
-      document.getElementById("errorRefreshButton");
-
-    const databaseStatus =
-      document.getElementById("databaseStatus");
-
-
-    /*
-     * ==========================================================
-     * HELPERS
-     * ==========================================================
-     */
-
-    function escapeHTML(value) {
-      if (value === null || value === undefined) {
-        return "";
-      }
-
-      return String(value)
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#039;");
-    }
-
-
-    function normalize(value) {
-      if (value === null || value === undefined) {
-        return "";
-      }
-
-      return String(value)
-        .toLowerCase()
-        .trim();
-    }
-
-
-    function toArray(value) {
-      if (!value) {
-        return [];
-      }
-
-      if (Array.isArray(value)) {
-        return value.filter(
-          item =>
-            item !== null &&
-            item !== undefined &&
-            String(item).trim() !== ""
-        );
-      }
-
-      return [value];
-    }
-
-
-    function uniqueSorted(values) {
-      return [...new Set(
-        values
-          .filter(
-            value =>
-              value !== null &&
-              value !== undefined &&
-              String(value).trim() !== ""
-          )
-          .map(value => String(value))
-      )].sort((a, b) => {
-
-        const aNumber = Number(a);
-        const bNumber = Number(b);
-
-        if (
-          !Number.isNaN(aNumber) &&
-          !Number.isNaN(bNumber)
-        ) {
-          return bNumber - aNumber;
-        }
-
-        return a.localeCompare(b);
+  function buildSubsetButtons(){
+    els.subsetButtons.innerHTML = SUBSETS.map(s => `
+      <button type="button" data-subset="${esc(s)}"
+        class="quick-btn font-mono text-xs uppercase tracking-widest px-3.5 py-2 rounded-full focus-ring ${s === state.subset ? 'active' : ''}">
+        ${esc(s)}
+      </button>
+    `).join('');
+    els.subsetButtons.querySelectorAll('button').forEach(btn => {
+      btn.addEventListener('click', () => {
+        state.subset = btn.dataset.subset;
+        buildSubsetButtons();
+        render();
       });
+    });
+  }
+
+  function populateSelect(select, values, placeholder){
+    const current = select.value;
+    select.innerHTML = `<option value="">${esc(placeholder)}</option>` +
+      values.map(v => `<option value="${esc(v)}">${esc(v)}</option>`).join('');
+    if(values.includes(current)) select.value = current;
+  }
+
+  function populateFilterOptions(){
+    populateSelect(els.nation, uniqueSorted(state.all.map(d => d.nation)), 'All Nations');
+    populateSelect(els.olympiad, uniqueSorted(state.all.map(d => d.olympiad)), 'All Olympiads');
+    populateSelect(els.year, uniqueSorted(state.all.map(d => d.year)), 'All Years');
+    populateSelect(els.type, uniqueSorted(state.all.map(d => d.problem_type)), 'All Types');
+
+    const years = uniqueSorted(state.all.map(d => d.year)).filter(y => typeof y === 'number' || !isNaN(parseInt(y)));
+    if(years.length){
+      els.yearRange.textContent = `${years[0]}–${years[years.length-1]}`;
     }
+  }
 
+  function matchesQuery(item, q){
+    if(!q) return true;
+    const haystack = [
+      item.problem_title, item.problem_id,
+      ...(item.themes || []),
+      ...(item.named_reactions || []),
+      ...(item.target_compounds || []),
+      ...(item.skills_required || [])
+    ].filter(Boolean).join(' ').toLowerCase();
+    return haystack.includes(q);
+  }
 
-    function makeTag(
-      text,
-      classes = "bg-slate-100 text-slate-600"
-    ) {
-      return `
-        <span
-          class="inline-flex max-w-full items-center rounded-lg px-2.5 py-1 text-[11px] font-semibold leading-4 ${classes}"
-          title="${escapeHTML(text)}"
-        >
-          <span class="truncate">
-            ${escapeHTML(text)}
-          </span>
-        </span>
-      `;
+  function filteredData(){
+    const q = state.query.trim().toLowerCase();
+    return state.all.filter(item => {
+      if(state.subset !== 'All' && item.subset !== state.subset) return false;
+      if(state.nation && item.nation !== state.nation) return false;
+      if(state.olympiad && item.olympiad !== state.olympiad) return false;
+      if(state.year && String(item.year) !== String(state.year)) return false;
+      if(state.type && item.problem_type !== state.type) return false;
+      if(!matchesQuery(item, q)) return false;
+      return true;
+    });
+  }
+
+  function pillGroup(items, colorClass, limit){
+    if(!items || !items.length) return '';
+    const shown = limit ? items.slice(0, limit) : items;
+    const extra = limit && items.length > limit ? items.length - limit : 0;
+    return shown.map(t => `<span class="pill inline-block text-[11px] px-2 py-1 rounded ${colorClass}">${esc(t)}</span>`).join('') +
+      (extra ? `<span class="pill inline-block text-[11px] px-2 py-1 rounded border hairline text-[#7c8a99]">+${extra}</span>` : '');
+  }
+
+  function pageSpanText(item){
+    if(item.page === undefined || item.page === null) return '';
+    if(item.end_page && item.end_page !== item.page) return `Pages ${item.page}–${item.end_page}`;
+    return `Page ${item.page}`;
+  }
+
+  function cardTemplate(item, idx){
+    const title = item.problem_title || item.problem_id || 'Untitled Problem';
+    const pdfHref = item.pdf_filename
+      ? `pdfs/${encodeURIComponent(item.pdf_filename)}${item.page ? '#page=' + item.page : ''}`
+      : null;
+
+    return `
+    <article class="card card-enter rounded-lg p-5 flex flex-col" style="animation-delay:${Math.min(idx,10) * 25}ms">
+      <div class="flex items-start justify-between gap-3 mb-3">
+        <div class="label-tag rounded px-2 py-1 font-mono text-[10px] uppercase tracking-widest text-[color:var(--gold)]">
+          ${esc(item.problem_id || '—')}
+        </div>
+        ${item.original_language && item.original_language !== 'English' ? `<span class="font-mono text-[10px] uppercase tracking-widest text-[#7c8a99]">${esc(item.original_language)}</span>` : ''}
+      </div>
+
+      <h3 class="font-display text-lg sm:text-xl font-semibold text-[color:var(--paper)] leading-snug mb-3">
+        ${esc(title)}
+      </h3>
+
+      <div class="flex flex-wrap gap-1.5 mb-4">
+        ${item.olympiad ? `<span class="pill text-[11px] px-2 py-1 rounded bg-[color:var(--teal-soft)] text-[color:var(--teal)]">${esc(item.olympiad)}</span>` : ''}
+        ${item.year ? `<span class="pill text-[11px] px-2 py-1 rounded border hairline text-[#c7cfd8]">${esc(item.year)}</span>` : ''}
+        ${item.nation ? `<span class="pill text-[11px] px-2 py-1 rounded border hairline text-[#c7cfd8]">${esc(item.nation)}</span>` : ''}
+        ${item.subset ? `<span class="pill text-[11px] px-2 py-1 rounded bg-[color:var(--gold-soft)]/40 text-[color:var(--gold)]">${esc(item.subset)}</span>` : ''}
+      </div>
+
+      <div class="flex-1 space-y-2.5 mb-4">
+        ${item.themes && item.themes.length ? `
+          <div class="flex flex-wrap gap-1.5">${pillGroup(item.themes, 'border hairline text-[#9aa5b1]', 5)}</div>
+        ` : ''}
+
+        ${item.named_reactions && item.named_reactions.length ? `
+          <div class="flex flex-wrap gap-1.5">${pillGroup(item.named_reactions, 'bg-[color:var(--rust)]/20 text-[#e4906f] border border-[color:var(--rust)]/40 font-medium', null)}</div>
+        ` : ''}
+
+        ${item.target_compounds && item.target_compounds.length ? `
+          <p class="text-xs text-[#8b96a3]"><span class="font-mono uppercase tracking-widest text-[10px] text-[#5c6773] mr-1">Targets</span>${esc(item.target_compounds.join(', '))}</p>
+        ` : ''}
+
+        ${item.skills_required && item.skills_required.length ? `
+          <p class="text-xs text-[#8b96a3]"><span class="font-mono uppercase tracking-widest text-[10px] text-[#5c6773] mr-1">Skills</span>${esc(item.skills_required.join(', '))}</p>
+        ` : ''}
+      </div>
+
+      <div class="flex items-center justify-between pt-3 border-t hairline">
+        <span class="font-mono text-[11px] text-[#6b7684]">${esc(pageSpanText(item))}</span>
+        ${pdfHref ? `
+          <a href="${esc(pdfHref)}" target="_blank" rel="noopener noreferrer"
+            class="btn-open font-mono text-[11px] uppercase tracking-widest px-3.5 py-2 rounded transition focus-ring">
+            Open Problem PDF
+          </a>
+        ` : `
+          <span class="font-mono text-[11px] uppercase tracking-widest px-3.5 py-2 rounded border hairline text-[#5c6773]">No PDF Linked</span>
+        `}
+      </div>
+    </article>`;
+  }
+
+  function render(){
+    const data = filteredData();
+    els.counter.textContent = `Showing ${data.length} of ${state.all.length} problems`;
+
+    if(data.length === 0){
+      els.grid.classList.add('fade-hide');
+      els.empty.classList.remove('hidden');
+      els.empty.classList.add('flex');
+    } else {
+      els.empty.classList.add('hidden');
+      els.empty.classList.remove('flex');
+      els.grid.classList.remove('fade-hide');
+      els.grid.innerHTML = data.map((item, idx) => cardTemplate(item, idx)).join('');
     }
+  }
 
+  function resetFilters(){
+    state.subset = 'All';
+    state.nation = '';
+    state.olympiad = '';
+    state.year = '';
+    state.type = '';
+    state.query = '';
+    els.search.value = '';
+    els.nation.value = '';
+    els.olympiad.value = '';
+    els.year.value = '';
+    els.type.value = '';
+    buildSubsetButtons();
+    render();
+  }
 
-    function getPageLabel(problem) {
-      const page = problem.page;
-      const endPage = problem.end_page;
+  function bindEvents(){
+    els.search.addEventListener('input', e => { state.query = e.target.value; render(); });
+    els.nation.addEventListener('change', e => { state.nation = e.target.value; render(); });
+    els.olympiad.addEventListener('change', e => { state.olympiad = e.target.value; render(); });
+    els.year.addEventListener('change', e => { state.year = e.target.value; render(); });
+    els.type.addEventListener('change', e => { state.type = e.target.value; render(); });
+    els.reset.addEventListener('click', resetFilters);
+    els.emptyReset.addEventListener('click', resetFilters);
+  }
 
-      if (
-        page !== null &&
-        page !== undefined &&
-        endPage !== null &&
-        endPage !== undefined &&
-        String(page) !== String(endPage)
-      ) {
-        return `Pages ${escapeHTML(page)}–${escapeHTML(endPage)}`;
-      }
+  function showError(){
+    els.loading.classList.add('hidden');
+    els.error.classList.remove('hidden');
+    els.error.classList.add('flex');
+  }
 
-      if (page !== null && page !== undefined && page !== "") {
-        return `Page ${escapeHTML(page)}`;
-      }
+  async function init(){
+    buildSubsetButtons();
+    bindEvents();
+    try {
+      const res = await fetch('./merged_database.json', { cache: 'no-store' });
+      if(!res.ok) throw new Error('HTTP ' + res.status);
+      const json = await res.json();
+      if(!Array.isArray(json)) throw new Error('Unexpected JSON shape');
 
-      return "Page not specified";
+      state.all = json;
+      populateFilterOptions();
+
+      els.loading.classList.add('hidden');
+      els.grid.classList.remove('hidden');
+      render();
+    } catch (err) {
+      console.error('Failed to load merged_database.json:', err);
+      showError();
     }
-
-
-    function getPDFUrl(problem) {
-      if (
-        !problem.pdf_filename ||
-        String(problem.pdf_filename).trim() === ""
-      ) {
-        return null;
-      }
-
-      const filename =
-        encodeURIComponent(String(problem.pdf_filename).trim());
-
-      let url = `pdfs/${filename}`;
-
-      if (
-        problem.page !== null &&
-        problem.page !== undefined &&
-        problem.page !== ""
-      ) {
-        url += `#page=${encodeURIComponent(problem.page)}`;
-      }
-
-      return url;
-    }
-
-
-    /*
-     * ==========================================================
-     * DATABASE LOADING
-     * ==========================================================
-     */
-
-    async function loadDatabase() {
-      showLoadingState();
-
-      try {
-        const response = await fetch(DATA_URL, {
-          cache: "no-cache"
-        });
-
-        if (!response.ok) {
-          throw new Error(
-            `HTTP ${response.status} — merged_database.json could not be loaded.`
-          );
-        }
-
-        const data = await response.json();
-
-        if (!Array.isArray(data)) {
-          throw new Error(
-            "merged_database.json does not contain a JSON array."
-          );
-        }
-
-        /*
-         * Keep only valid object records.
-         */
-        allProblems = data.filter(
-          item =>
-            item &&
-            typeof item === "object" &&
-            !Array.isArray(item)
-        );
-
-
-        /*
-         * Remove duplicate problem_id values.
-         *
-         * This is useful if the GitHub Action accidentally includes
-         * the same source record more than once.
-         */
-        const seenIDs = new Set();
-
-        allProblems = allProblems.filter(problem => {
-
-          if (!problem.problem_id) {
-            return true;
-          }
-
-          const id = String(problem.problem_id);
-
-          if (seenIDs.has(id)) {
-            return false;
-          }
-
-          seenIDs.add(id);
-
-          return true;
-        });
-
-
-        populateFilters();
-
-        applyFilters();
-
-        hideLoadingState();
-
-        setDatabaseStatus(
-          `Loaded ${allProblems.length.toLocaleString()} problems`,
-          "success"
-        );
-
-      } catch (error) {
-
-        console.error(
-          "Failed to load Chemistry Olympiad database:",
-          error
-        );
-
-        showErrorState(error);
-
-      }
-    }
-
-
-    /*
-     * ==========================================================
-     * FILTER OPTION GENERATION
-     * ==========================================================
-     */
-
-    function populateFilters() {
-
-      populateSelect(
-        nationFilter,
-        "All nations",
-        uniqueSorted(
-          allProblems.map(problem => problem.nation)
-        )
-      );
-
-
-      populateSelect(
-        olympiadFilter,
-        "All olympiads",
-        uniqueSorted(
-          allProblems.map(problem => problem.olympiad)
-        )
-      );
-
-
-      populateSelect(
-        yearFilter,
-        "All years",
-        uniqueSorted(
-          allProblems.map(problem => problem.year)
-        )
-      );
-
-
-      populateSelect(
-        problemTypeFilter,
-        "All problem types",
-        uniqueSorted(
-          allProblems.map(problem => problem.problem_type)
-        )
-      );
-
-
-      createSubsetButtons();
-    }
-
-
-    function populateSelect(
-      select,
-      defaultText,
-      values
-    ) {
-      select.innerHTML = "";
-
-      const defaultOption =
-        document.createElement("option");
-
-      defaultOption.value = "";
-      defaultOption.textContent = defaultText;
-
-      select.appendChild(defaultOption);
-
-      values.forEach(value => {
-
-        const option =
-          document.createElement("option");
-
-        option.value = value;
-        option.textContent = value;
-
-        select.appendChild(option);
-      });
-    }
-
-
-    function createSubsetButtons() {
-
-      const fixedSubsets = [
-        "Organic",
-        "Physical",
-        "Inorganic",
-        "Analytical",
-        "Biochemistry"
-      ];
-
-
-      const dataSubsets =
-        uniqueSorted(
-          allProblems.map(problem => problem.subset)
-        );
-
-
-      const remainingSubsets =
-        dataSubsets.filter(subset =>
-          !fixedSubsets.some(
-            fixed =>
-              normalize(fixed) === normalize(subset)
-          )
-        );
-
-
-      const subsets = [
-        "",
-        ...fixedSubsets,
-        ...remainingSubsets
-      ];
-
-
-      subsetButtons.innerHTML =
-        subsets.map(subset => {
-
-          const label =
-            subset || "All";
-
-          const active =
-            state.subset === subset;
-
-
-          return `
-            <button
-              type="button"
-              class="subset-button rounded-xl border px-3.5 py-2 text-xs font-bold transition ${
-                active
-                  ? "border-indigo-600 bg-indigo-600 text-white shadow-sm"
-                  : "border-slate-200 bg-white text-slate-600 hover:border-indigo-200 hover:bg-indigo-50 hover:text-indigo-700"
-              }"
-              data-subset="${escapeHTML(subset)}"
-              aria-pressed="${active}"
-            >
-              ${escapeHTML(label)}
-            </button>
-          `;
-        })
-        .join("");
-    }
-
-
-    /*
-     * ==========================================================
-     * SEARCH
-     * ==========================================================
-     */
-
-    function matchesSearch(problem) {
-
-      const query =
-        normalize(state.search);
-
-      if (!query) {
-        return true;
-      }
-
-
-      /*
-       * Search exactly these fields:
-       *
-       * problem_title
-       * themes
-       * named_reactions
-       * target_compounds
-       * skills_required
-       */
-      const searchableFields = [
-
-        problem.problem_title,
-
-        ...toArray(problem.themes),
-
-        ...toArray(problem.named_reactions),
-
-        ...toArray(problem.target_compounds),
-
-        ...toArray(problem.skills_required)
-
-      ];
-
-
-      const searchableText =
-        searchableFields
-          .map(value => normalize(value))
-          .join(" ");
-
-
-      return searchableText.includes(query);
-    }
-
-
-    /*
-     * ==========================================================
-     * APPLY FILTERS
-     * ==========================================================
-     */
-
-    function applyFilters() {
-
-      filteredProblems =
-        allProblems.filter(problem => {
-
-          /*
-           * Search
-           */
-          if (!matchesSearch(problem)) {
-            return false;
-          }
-
-
-          /*
-           * Subset
-           */
-          if (
-            state.subset &&
-            normalize(problem.subset) !==
-              normalize(state.subset)
-          ) {
-            return false;
-          }
-
-
-          /*
-           * Nation
-           */
-          if (
-            state.nation &&
-            String(problem.nation) !==
-              String(state.nation)
-          ) {
-            return false;
-          }
-
-
-          /*
-           * Olympiad
-           */
-          if (
-            state.olympiad &&
-            String(problem.olympiad) !==
-              String(state.olympiad)
-          ) {
-            return false;
-          }
-
-
-          /*
-           * Year
-           */
-          if (
-            state.year &&
-            String(problem.year) !==
-              String(state.year)
-          ) {
-            return false;
-          }
-
-
-          /*
-           * Problem type
-           */
-          if (
-            state.problemType &&
-            String(problem.problem_type) !==
-              String(state.problemType)
-          ) {
-            return false;
-          }
-
-
-          return true;
-        });
-
-
-      renderProblems();
-
-      updateResultsCounter();
-
-      updateSearchButton();
-
-      createSubsetButtons();
-    }
-
-
-    /*
-     * ==========================================================
-     * RENDER PROBLEM CARDS
-     * ==========================================================
-     */
-
-    function renderProblems() {
-
-      resultsGrid.innerHTML = "";
-
-
-      if (!filteredProblems.length) {
-
-        resultsGrid.classList.add("hidden");
-
-        emptyState.classList.remove("hidden");
-
-        return;
-      }
-
-
-      resultsGrid.classList.remove("hidden");
-
-      emptyState.classList.add("hidden");
-
-
-      const fragment =
-        document.createDocumentFragment();
-
-
-      filteredProblems.forEach(
-        (problem, index) => {
-
-          const wrapper =
-            document.createElement("div");
-
-          wrapper.innerHTML =
-            createProblemCard(problem, index);
-
-          fragment.appendChild(
-            wrapper.firstElementChild
-          );
-        }
-      );
-
-
-      resultsGrid.appendChild(fragment);
-    }
-
-
-    function createProblemCard(problem, index) {
-
-      const title =
-        problem.problem_title ||
-        problem.problem_id ||
-        "Untitled Problem";
-
-
-      const themes =
-        toArray(problem.themes);
-
-      const reactions =
-        toArray(problem.named_reactions);
-
-      const compounds =
-        toArray(problem.target_compounds);
-
-      const skills =
-        toArray(problem.skills_required);
-
-
-      const pdfURL =
-        getPDFUrl(problem);
-
-
-      /*
-       * Header badges
-       */
-      const badges = [
-
-        problem.olympiad
-          ? makeTag(
-              problem.olympiad,
-              "bg-indigo-50 text-indigo-700"
-            )
-          : "",
-
-        problem.year
-          ? makeTag(
-              problem.year,
-              "bg-slate-100 text-slate-600"
-            )
-          : "",
-
-        problem.nation
-          ? makeTag(
-              problem.nation,
-              "bg-sky-50 text-sky-700"
-            )
-          : "",
-
-        problem.subset
-          ? makeTag(
-              problem.subset,
-              "bg-violet-50 text-violet-700"
-            )
-          : ""
-
-      ].join("");
-
-
-      /*
-       * Themes
-       */
-      const themeHTML =
-        themes.length
-          ? themes
-              .slice(0, 8)
-              .map(theme =>
-                makeTag(
-                  theme,
-                  "bg-slate-100 text-slate-600"
-                )
-              )
-              .join("")
-          : `
-              <span class="text-xs text-slate-400">
-                No themes listed
-              </span>
-            `;
-
-
-      /*
-       * Named reactions
-       */
-      const reactionsHTML =
-        reactions.length
-          ? `
-            <div class="mt-4">
-              <p class="mb-2 text-[10px] font-extrabold uppercase tracking-wider text-slate-400">
-                Named reactions
-              </p>
-
-              <div class="flex flex-wrap gap-1.5">
-                ${
-                  reactions
-                    .slice(0, 6)
-                    .map(reaction =>
-                      makeTag(
-                        reaction,
-                        "bg-emerald-50 text-emerald-700 ring-1 ring-inset ring-emerald-100"
-                      )
-                    )
-                    .join("")
-                }
-              </div>
-            </div>
-          `
-          : "";
-
-
-      /*
-       * Target compounds
-       */
-      const compoundsHTML =
-        compounds.length
-          ? `
-            <div class="mt-4">
-              <p class="mb-2 text-[10px] font-extrabold uppercase tracking-wider text-slate-400">
-                Target compounds
-              </p>
-
-              <div class="flex flex-wrap gap-1.5">
-                ${
-                  compounds
-                    .slice(0, 6)
-                    .map(compound =>
-                      makeTag(
-                        compound,
-                        "bg-blue-50 text-blue-700 ring-1 ring-inset ring-blue-100"
-                      )
-                    )
-                    .join("")
-                }
-              </div>
-            </div>
-          `
-          : "";
-
-
-      /*
-       * Skills
-       */
-      const skillsHTML =
-        skills.length
-          ? `
-            <div class="mt-4">
-              <p class="mb-2 text-[10px] font-extrabold uppercase tracking-wider text-slate-400">
-                Skills required
-              </p>
-
-              <div class="flex flex-wrap gap-1.5">
-                ${
-                  skills
-                    .slice(0, 6)
-                    .map(skill =>
-                      makeTag(
-                        skill,
-                        "bg-amber-50 text-amber-700 ring-1 ring-inset ring-amber-100"
-                      )
-                    )
-                    .join("")
-                }
-              </div>
-            </div>
-          `
-          : "";
-
-
-      /*
-       * PDF button
-       */
-      const pdfButton =
-        pdfURL
-          ? `
-            <a
-              href="${escapeHTML(pdfURL)}"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-indigo-600 px-4 py-2.5 text-xs font-extrabold text-white shadow-sm transition hover:bg-indigo-700 focus:outline-none focus:ring-4 focus:ring-indigo-100"
-              aria-label="Open PDF for ${escapeHTML(title)}"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="1.9"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                <path d="M14 2v6h6"></path>
-                <path d="M8 13h8"></path>
-                <path d="M8 17h5"></path>
-              </svg>
-
-              Open Problem PDF
-            </a>
-          `
-          : `
-            <span
-              class="inline-flex w-full cursor-not-allowed items-center justify-center gap-2 rounded-xl bg-slate-100 px-4 py-2.5 text-xs font-bold text-slate-400"
-              title="No PDF filename is available"
-            >
-              PDF unavailable
-            </span>
-          `;
-
-
-      /*
-       * Full card
-       */
-      return `
-        <article
-          class="problem-card flex min-h-[430px] flex-col overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm"
-          style="animation-delay: ${Math.min(index * 25, 250)}ms"
-        >
-
-          <!-- Card Header -->
-          <div class="border-b border-slate-100 p-5">
-
-            <div class="mb-4 flex flex-wrap gap-1.5">
-              ${
-                badges ||
-                makeTag(
-                  "Problem",
-                  "bg-slate-100 text-slate-600"
-                )
-              }
-            </div>
-
-
-            <h3
-              class="line-clamp-3 text-base font-extrabold leading-6 tracking-tight text-slate-950"
-              title="${escapeHTML(title)}"
-            >
-              ${escapeHTML(title)}
-            </h3>
-
-
-            ${
-              problem.problem_id
-                ? `
-                  <p
-                    class="mt-2 truncate font-mono text-[10px] font-medium text-slate-400"
-                    title="${escapeHTML(problem.problem_id)}"
-                  >
-                    ${escapeHTML(problem.problem_id)}
-                  </p>
-                `
-                : ""
-            }
-
-          </div>
-
-
-          <!-- Card Body -->
-          <div class="flex-1 p-5">
-
-            <!-- Themes -->
-            <div>
-              <p class="mb-2 text-[10px] font-extrabold uppercase tracking-wider text-slate-400">
-                Themes
-              </p>
-
-              <div class="flex max-h-[76px] flex-wrap gap-1.5 overflow-hidden">
-                ${themeHTML}
-              </div>
-            </div>
-
-
-            ${reactionsHTML}
-
-            ${compoundsHTML}
-
-            ${skillsHTML}
-
-          </div>
-
-
-          <!-- Card Footer -->
-          <div class="border-t border-slate-100 bg-slate-50/70 p-4">
-
-            <div class="mb-3 flex items-center justify-between gap-3">
-
-              <div class="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-500">
-
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="14"
-                  height="14"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="1.8"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
-                  <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
-                  <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
-                </svg>
-
-                ${getPageLabel(problem)}
-
-              </div>
-
-
-              ${
-                problem.original_language
-                  ? `
-                    <span class="max-w-[120px] truncate text-[11px] font-medium text-slate-400">
-                      ${escapeHTML(problem.original_language)}
-                    </span>
-                  `
-                  : ""
-              }
-
-            </div>
-
-
-            ${pdfButton}
-
-          </div>
-
-        </article>
-      `;
-    }
-
-
-    /*
-     * ==========================================================
-     * RESULT COUNTER
-     * ==========================================================
-     */
-
-    function updateResultsCounter() {
-
-      resultsCount.textContent =
-        `Showing ${filteredProblems.length.toLocaleString()} of ${allProblems.length.toLocaleString()} problems`;
-
-
-      const active = [];
-
-
-      if (state.search) {
-        active.push(
-          `Search: "${state.search}"`
-        );
-      }
-
-
-      if (state.subset) {
-        active.push(
-          `Subset: ${state.subset}`
-        );
-      }
-
-
-      if (state.nation) {
-        active.push(
-          `Nation: ${state.nation}`
-        );
-      }
-
-
-      if (state.olympiad) {
-        active.push(
-          `Olympiad: ${state.olympiad}`
-        );
-      }
-
-
-      if (state.year) {
-        active.push(
-          `Year: ${state.year}`
-        );
-      }
-
-
-      if (state.problemType) {
-        active.push(
-          `Type: ${state.problemType}`
-        );
-      }
-
-
-      if (active.length) {
-
-        activeFilters.textContent =
-          active.join("  •  ");
-
-        activeFilters.classList.remove(
-          "hidden"
-        );
-
-      } else {
-
-        activeFilters.classList.add(
-          "hidden"
-        );
-
-      }
-    }
-
-
-    /*
-     * ==========================================================
-     * SEARCH CLEAR BUTTON
-     * ==========================================================
-     */
-
-    function updateSearchButton() {
-
-      if (state.search) {
-
-        clearSearch.classList.remove(
-          "hidden"
-        );
-
-        clearSearch.classList.add(
-          "flex"
-        );
-
-      } else {
-
-        clearSearch.classList.add(
-          "hidden"
-        );
-
-        clearSearch.classList.remove(
-          "flex"
-        );
-      }
-    }
-
-
-    /*
-     * ==========================================================
-     * LOADING / ERROR STATES
-     * ==========================================================
-     */
-
-    function showLoadingState() {
-
-      loadingState.classList.remove(
-        "hidden"
-      );
-
-      resultsGrid.classList.add(
-        "hidden"
-      );
-
-      emptyState.classList.add(
-        "hidden"
-      );
-
-      errorState.classList.add(
-        "hidden"
-      );
-
-      resultsCount.textContent =
-        "Loading problems...";
-
-      setDatabaseStatus(
-        "Loading database",
-        "loading"
-      );
-    }
-
-
-    function hideLoadingState() {
-
-      loadingState.classList.add(
-        "hidden"
-      );
-    }
-
-
-    function showErrorState(error) {
-
-      loadingState.classList.add(
-        "hidden"
-      );
-
-      resultsGrid.classList.add(
-        "hidden"
-      );
-
-      emptyState.classList.add(
-        "hidden"
-      );
-
-      errorState.classList.remove(
-        "hidden"
-      );
-
-
-      errorMessage.textContent =
-        "We couldn't load merged_database.json. " +
-        "The GitHub Action may not have generated it yet, " +
-        "or the file may contain invalid JSON. " +
-        `Details: ${error.message || "Unknown error."}`;
-
-
-      resultsCount.textContent =
-        "Database unavailable";
-
-
-      setDatabaseStatus(
-        "Database unavailable",
-        "error"
-      );
-    }
-
-
-    function setDatabaseStatus(
-      message,
-      type
-    ) {
-
-      const styles = {
-
-        loading: {
-          wrapper:
-            "bg-slate-100 text-slate-500",
-          dot:
-            "bg-slate-400"
-        },
-
-        success: {
-          wrapper:
-            "bg-emerald-50 text-emerald-700",
-          dot:
-            "bg-emerald-500"
-        },
-
-        error: {
-          wrapper:
-            "bg-red-50 text-red-700",
-          dot:
-            "bg-red-500"
-        }
-
-      };
-
-
-      const style =
-        styles[type] || styles.loading;
-
-
-      databaseStatus.className =
-        `inline-flex items-center gap-2 self-start rounded-full px-3 py-1.5 text-xs font-semibold sm:self-auto ${style.wrapper}`;
-
-
-      databaseStatus.innerHTML = `
-        <span class="h-1.5 w-1.5 rounded-full ${style.dot}"></span>
-        ${escapeHTML(message)}
-      `;
-    }
-
-
-    /*
-     * ==========================================================
-     * RESET
-     * ==========================================================
-     */
-
-    function resetAllFilters() {
-
-      state.search = "";
-      state.subset = "";
-      state.nation = "";
-      state.olympiad = "";
-      state.year = "";
-      state.problemType = "";
-
-
-      searchInput.value = "";
-
-      nationFilter.value = "";
-
-      olympiadFilter.value = "";
-
-      yearFilter.value = "";
-
-      problemTypeFilter.value = "";
-
-
-      applyFilters();
-    }
-
-
-    /*
-     * ==========================================================
-     * EVENT LISTENERS
-     * ==========================================================
-     */
-
-    searchInput.addEventListener(
-      "input",
-      event => {
-
-        state.search =
-          event.target.value;
-
-        applyFilters();
-      }
-    );
-
-
-    clearSearch.addEventListener(
-      "click",
-      () => {
-
-        state.search = "";
-
-        searchInput.value = "";
-
-        searchInput.focus();
-
-        applyFilters();
-      }
-    );
-
-
-    subsetButtons.addEventListener(
-      "click",
-      event => {
-
-        const button =
-          event.target.closest(
-            ".subset-button"
-          );
-
-        if (!button) {
-          return;
-        }
-
-
-        state.subset =
-          button.dataset.subset || "";
-
-
-        applyFilters();
-      }
-    );
-
-
-    nationFilter.addEventListener(
-      "change",
-      event => {
-
-        state.nation =
-          event.target.value;
-
-        applyFilters();
-      }
-    );
-
-
-    olympiadFilter.addEventListener(
-      "change",
-      event => {
-
-        state.olympiad =
-          event.target.value;
-
-        applyFilters();
-      }
-    );
-
-
-    yearFilter.addEventListener(
-      "change",
-      event => {
-
-        state.year =
-          event.target.value;
-
-        applyFilters();
-      }
-    );
-
-
-    problemTypeFilter.addEventListener(
-      "change",
-      event => {
-
-        state.problemType =
-          event.target.value;
-
-        applyFilters();
-      }
-    );
-
-
-    resetFilters.addEventListener(
-      "click",
-      resetAllFilters
-    );
-
-
-    emptyResetButton.addEventListener(
-      "click",
-      resetAllFilters
-    );
-
-
-    retryButton.addEventListener(
-      "click",
-      loadDatabase
-    );
-
-
-    errorRefreshButton.addEventListener(
-      "click",
-      () => {
-        window.location.reload();
-      }
-    );
-
-
-    /*
-     * ==========================================================
-     * KEYBOARD SHORTCUTS
-     * ==========================================================
-     *
-     * "/" focuses the search box.
-     * Escape clears the current search.
-     */
-
-    document.addEventListener(
-      "keydown",
-      event => {
-
-        const activeElement =
-          document.activeElement;
-
-        const tagName =
-          activeElement &&
-          activeElement.tagName
-            ? activeElement.tagName.toLowerCase()
-            : "";
-
-
-        const typing =
-          tagName === "input" ||
-          tagName === "textarea" ||
-          tagName === "select";
-
-
-        if (
-          event.key === "/" &&
-          !typing &&
-          !event.ctrlKey &&
-          !event.metaKey &&
-          !event.altKey
-        ) {
-
-          event.preventDefault();
-
-          searchInput.focus();
-        }
-
-
-        if (
-          event.key === "Escape" &&
-          document.activeElement === searchInput
-        ) {
-
-          if (state.search) {
-
-            clearSearch.click();
-
-          } else {
-
-            searchInput.blur();
-          }
-        }
-      }
-    );
-
-
-    /*
-     * ==========================================================
-     * START APPLICATION
-     * ==========================================================
-     */
-
-    loadDatabase();
-
-  </script>
-
+  }
+
+  init();
+})();
+</script>
 </body>
 </html>
