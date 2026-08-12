@@ -1,1 +1,1522 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Global Chemistry Olympiad Archive</title>
+  <meta
+    name="description"
+    content="A searchable directory of Chemistry Olympiad problems from around the world."
+  />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: [
+              "Inter",
+              "ui-sans-serif",
+              "system-ui",
+              "-apple-system",
+              "BlinkMacSystemFont",
+              "Segoe UI",
+              "sans-serif"
+            ]
+          },
+          boxShadow: {
+            soft: "0 10px 40px rgba(15, 23, 42, 0.08)"
+          }
+        }
+      }
+    };
+  </script>
+
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background:
+        radial-gradient(circle at 10% 0%, rgba(99, 102, 241, 0.08), transparent 30rem),
+        radial-gradient(circle at 90% 10%, rgba(14, 165, 233, 0.07), transparent 28rem),
+        #f8fafc;
+    }
+
+    .glass {
+      background: rgba(255, 255, 255, 0.88);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+    }
+
+    .card-hover {
+      transition:
+        transform 180ms ease,
+        box-shadow 180ms ease,
+        border-color 180ms ease;
+    }
+
+    .card-hover:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 16px 45px rgba(15, 23, 42, 0.11);
+      border-color: rgba(99, 102, 241, 0.3);
+    }
+
+    .line-clamp-2 {
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .line-clamp-3 {
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 7px;
+      height: 7px;
+    }
+
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 999px;
+    }
+
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+      background: #94a3b8;
+    }
+
+    .fade-in {
+      animation: fadeIn 250ms ease-out;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(4px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+
+</head>
+
+<body class="min-h-screen text-slate-900">
+
+  <!-- =========================================================
+       HEADER
+  ========================================================== -->
+
+  <header class="sticky top-0 z-50 border-b border-slate-200/80 glass">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="flex min-h-[76px] items-center gap-4">
+
+```
+    <!-- Logo / Title -->
+    <div class="flex min-w-0 items-center gap-3">
+      <div
+        class="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-indigo-600 text-white shadow-lg shadow-indigo-200"
+        aria-hidden="true"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="23"
+          height="23"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.8"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M10 2v7.31a7 7 0 0 1-1.1 3.78L5.5 18.5A2.5 2.5 0 0 0 7.65 22h8.7a2.5 2.5 0 0 0 2.15-3.5l-3.4-5.41A7 7 0 0 1 14 9.31V2" />
+          <path d="M8 2h8" />
+          <path d="M7.5 16h9" />
+        </svg>
+      </div>
+
+      <div class="min-w-0">
+        <h1 class="truncate text-base font-bold tracking-tight text-slate-950 sm:text-lg">
+          Global Chemistry Olympiad Archive
+        </h1>
+        <p class="hidden text-xs font-medium text-slate-500 sm:block">
+          Searchable problem directory
+        </p>
+      </div>
+    </div>
+
+    <!-- Search -->
+    <div class="relative ml-auto w-full max-w-xl">
+      <label for="searchInput" class="sr-only">Search chemistry problems</label>
+
+      <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-4 text-slate-400">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="19"
+          height="19"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <circle cx="11" cy="11" r="8"></circle>
+          <path d="m21 21-4.3-4.3"></path>
+        </svg>
+      </div>
+
+      <input
+        id="searchInput"
+        type="search"
+        autocomplete="off"
+        placeholder="Search titles, reactions, themes, skills..."
+        class="h-12 w-full rounded-2xl border border-slate-200 bg-white/90 pl-11 pr-11 text-sm font-medium text-slate-900 shadow-sm outline-none transition placeholder:text-slate-400 focus:border-indigo-400 focus:ring-4 focus:ring-indigo-100"
+      />
+
+      <button
+        id="clearSearch"
+        type="button"
+        class="absolute inset-y-0 right-0 hidden items-center pr-3 text-slate-400 transition hover:text-slate-700"
+        aria-label="Clear search"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="18"
+          height="18"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <circle cx="12" cy="12" r="9"></circle>
+          <path d="m15 9-6 6"></path>
+          <path d="m9 9 6 6"></path>
+        </svg>
+      </button>
+    </div>
+  </div>
+</div>
+```
+
+  </header>
+
+  <!-- =========================================================
+       MAIN
+  ========================================================== -->
+
+  <main class="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+
+```
+<!-- Intro -->
+<section class="mb-7">
+  <div class="max-w-3xl">
+    <div class="mb-3 inline-flex items-center gap-2 rounded-full border border-indigo-100 bg-indigo-50 px-3 py-1 text-xs font-semibold text-indigo-700">
+      <span class="h-1.5 w-1.5 rounded-full bg-indigo-500"></span>
+      Chemistry problem database
+    </div>
+
+    <h2 class="text-3xl font-extrabold tracking-tight text-slate-950 sm:text-4xl">
+      Explore Chemistry Olympiad Problems
+    </h2>
+
+    <p class="mt-3 max-w-2xl text-sm leading-6 text-slate-500 sm:text-base">
+      Search and filter problems by topic, olympiad, country, year,
+      reactions, compounds, and required skills.
+    </p>
+  </div>
+</section>
+
+<!-- =======================================================
+     FILTERS
+======================================================== -->
+<section
+  aria-label="Problem filters"
+  class="mb-8 rounded-3xl border border-slate-200 bg-white p-5 shadow-soft sm:p-6"
+>
+  <div class="mb-5 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+    <div>
+      <h3 class="text-sm font-bold text-slate-900">Filter problems</h3>
+      <p class="mt-1 text-xs text-slate-500">
+        Narrow the archive by subject area or competition.
+      </p>
+    </div>
+
+    <button
+      id="resetFilters"
+      type="button"
+      class="inline-flex w-fit items-center gap-2 rounded-xl border border-slate-200 bg-white px-3.5 py-2 text-xs font-semibold text-slate-600 transition hover:border-slate-300 hover:bg-slate-50 hover:text-slate-900"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="15"
+        height="15"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <path d="M3 12a9 9 0 1 0 3-6.7"></path>
+        <path d="M3 4v5h5"></path>
+      </svg>
+      Reset filters
+    </button>
+  </div>
+
+  <!-- Subset buttons -->
+  <div class="mb-5">
+    <label class="mb-2 block text-xs font-bold uppercase tracking-wider text-slate-400">
+      Subset
+    </label>
+
+    <div
+      id="subsetFilters"
+      class="flex flex-wrap gap-2"
+      role="group"
+      aria-label="Subset filters"
+    >
+      <!-- Buttons inserted by JS -->
+    </div>
+  </div>
+
+  <!-- Dropdown filters -->
+  <div class="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
+
+    <div>
+      <label for="nationFilter" class="mb-1.5 block text-xs font-semibold text-slate-500">
+        Nation
+      </label>
+      <select
+        id="nationFilter"
+        class="filter-select w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-2.5 text-sm font-medium text-slate-700 outline-none transition focus:border-indigo-400 focus:bg-white focus:ring-4 focus:ring-indigo-100"
+      >
+        <option value="">All nations</option>
+      </select>
+    </div>
+
+    <div>
+      <label for="olympiadFilter" class="mb-1.5 block text-xs font-semibold text-slate-500">
+        Olympiad
+      </label>
+      <select
+        id="olympiadFilter"
+        class="filter-select w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-2.5 text-sm font-medium text-slate-700 outline-none transition focus:border-indigo-400 focus:bg-white focus:ring-4 focus:ring-indigo-100"
+      >
+        <option value="">All olympiads</option>
+      </select>
+    </div>
+
+    <div>
+      <label for="yearFilter" class="mb-1.5 block text-xs font-semibold text-slate-500">
+        Year
+      </label>
+      <select
+        id="yearFilter"
+        class="filter-select w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-2.5 text-sm font-medium text-slate-700 outline-none transition focus:border-indigo-400 focus:bg-white focus:ring-4 focus:ring-indigo-100"
+      >
+        <option value="">All years</option>
+      </select>
+    </div>
+
+    <div>
+      <label for="typeFilter" class="mb-1.5 block text-xs font-semibold text-slate-500">
+        Problem type
+      </label>
+      <select
+        id="typeFilter"
+        class="filter-select w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-2.5 text-sm font-medium text-slate-700 outline-none transition focus:border-indigo-400 focus:bg-white focus:ring-4 focus:ring-indigo-100"
+      >
+        <option value="">All problem types</option>
+      </select>
+    </div>
+
+  </div>
+</section>
+
+<!-- =======================================================
+     RESULTS TOOLBAR
+======================================================== -->
+<section class="mb-5 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
+  <div>
+    <p id="resultsCount" class="text-sm font-semibold text-slate-700">
+      Loading problems...
+    </p>
+    <p id="activeFilters" class="mt-1 hidden text-xs text-slate-400"></p>
+  </div>
+
+  <div
+    id="dataStatus"
+    class="inline-flex items-center gap-2 self-start rounded-full bg-slate-100 px-3 py-1.5 text-xs font-medium text-slate-500 sm:self-auto"
+  >
+    <span class="h-1.5 w-1.5 animate-pulse rounded-full bg-slate-400"></span>
+    Loading database
+  </div>
+</section>
+
+<!-- =======================================================
+     LOADING STATE
+======================================================== -->
+<section id="loadingState" class="py-12">
+  <div class="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
+    <div class="h-80 animate-pulse rounded-3xl border border-slate-200 bg-white"></div>
+    <div class="h-80 animate-pulse rounded-3xl border border-slate-200 bg-white"></div>
+    <div class="h-80 animate-pulse rounded-3xl border border-slate-200 bg-white"></div>
+  </div>
+</section>
+
+<!-- =======================================================
+     ERROR STATE
+======================================================== -->
+<section id="errorState" class="hidden py-12">
+  <div class="mx-auto max-w-xl rounded-3xl border border-red-200 bg-white p-8 text-center shadow-soft">
+    <div class="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-red-50 text-red-600">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="23"
+        height="23"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.8"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <circle cx="12" cy="12" r="9"></circle>
+        <path d="M12 8v4"></path>
+        <path d="M12 16h.01"></path>
+      </svg>
+    </div>
+
+    <h3 class="text-lg font-bold text-slate-900">
+      Unable to load the problem database
+    </h3>
+
+    <p id="errorMessage" class="mt-2 text-sm leading-6 text-slate-500">
+      Please check that your JSON files exist and are valid.
+    </p>
+
+    <button
+      id="retryButton"
+      type="button"
+      class="mt-5 rounded-xl bg-indigo-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-indigo-700"
+    >
+      Try again
+    </button>
+  </div>
+</section>
+
+<!-- =======================================================
+     RESULTS GRID
+======================================================== -->
+<section
+  id="resultsGrid"
+  class="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3"
+  aria-live="polite"
+></section>
+
+<!-- =======================================================
+     EMPTY STATE
+======================================================== -->
+<section id="emptyState" class="hidden py-16">
+  <div class="mx-auto max-w-lg text-center">
+    <div class="mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-3xl bg-slate-100 text-slate-400">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="28"
+        height="28"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.6"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <circle cx="11" cy="11" r="7"></circle>
+        <path d="m20 20-4-4"></path>
+        <path d="M8.5 8.5 13.5 13.5"></path>
+        <path d="m13.5 8.5-5 5"></path>
+      </svg>
+    </div>
+
+    <h3 class="text-lg font-bold text-slate-900">
+      No problems found
+    </h3>
+
+    <p class="mt-2 text-sm leading-6 text-slate-500">
+      No problems match your current search and filters.
+      Try a different keyword or reset the filters.
+    </p>
+
+    <button
+      id="emptyResetButton"
+      type="button"
+      class="mt-5 rounded-xl bg-indigo-600 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-indigo-700"
+    >
+      Clear search & filters
+    </button>
+  </div>
+</section>
+```
+
+  </main>
+
+  <!-- =========================================================
+       FOOTER
+  ========================================================== -->
+
+  <footer class="mt-12 border-t border-slate-200 bg-white/70">
+    <div class="mx-auto flex max-w-7xl flex-col gap-2 px-4 py-7 text-xs text-slate-400 sm:flex-row sm:items-center sm:justify-between sm:px-6 lg:px-8">
+      <p>
+        Global Chemistry Olympiad Archive
+      </p>
+      <p>
+        Built for students, teachers, and Chemistry Olympiad enthusiasts.
+      </p>
+    </div>
+  </footer>
+
+  <!-- =========================================================
+       JAVASCRIPT
+  ========================================================== -->
+
+  <script>
+    /*
+     * ==========================================================
+     * CONFIGURATION
+     * ==========================================================
+     *
+     * The application first attempts to load:
+     *
+     *     ./merged_database.json
+     *
+     * If that file is unavailable, the files below are fetched
+     * in parallel and merged into one array.
+     *
+     * Add or remove files as your repository grows.
+     */
+
+    const JSON_FILES = [
+      "data/usnco_2024.json",
+      "data/icho_2023.json"
+      // "data/icho_2024.json",
+      // "data/ukcho_2024.json",
+      // "data/ach_2024.json"
+    ];
+
+    const MERGED_DATABASE = "merged_database.json";
+
+
+    /*
+     * ==========================================================
+     * APPLICATION STATE
+     * ==========================================================
+     */
+
+    let allProblems = [];
+    let filteredProblems = [];
+
+    let state = {
+      search: "",
+      subset: "",
+      nation: "",
+      olympiad: "",
+      year: "",
+      problemType: ""
+    };
+
+
+    /*
+     * ==========================================================
+     * DOM REFERENCES
+     * ==========================================================
+     */
+
+    const searchInput = document.getElementById("searchInput");
+    const clearSearch = document.getElementById("clearSearch");
+
+    const subsetFilters = document.getElementById("subsetFilters");
+    const nationFilter = document.getElementById("nationFilter");
+    const olympiadFilter = document.getElementById("olympiadFilter");
+    const yearFilter = document.getElementById("yearFilter");
+    const typeFilter = document.getElementById("typeFilter");
+
+    const resetFilters = document.getElementById("resetFilters");
+    const emptyResetButton = document.getElementById("emptyResetButton");
+
+    const resultsGrid = document.getElementById("resultsGrid");
+    const emptyState = document.getElementById("emptyState");
+    const loadingState = document.getElementById("loadingState");
+    const errorState = document.getElementById("errorState");
+    const errorMessage = document.getElementById("errorMessage");
+    const retryButton = document.getElementById("retryButton");
+
+    const resultsCount = document.getElementById("resultsCount");
+    const activeFilters = document.getElementById("activeFilters");
+    const dataStatus = document.getElementById("dataStatus");
+
+
+    /*
+     * ==========================================================
+     * UTILITY FUNCTIONS
+     * ==========================================================
+     */
+
+    function escapeHTML(value) {
+      if (value === null || value === undefined) return "";
+
+      return String(value)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+    }
+
+
+    function normalize(value) {
+      if (value === null || value === undefined) {
+        return "";
+      }
+
+      if (Array.isArray(value)) {
+        return value.join(" ");
+      }
+
+      return String(value).toLowerCase().trim();
+    }
+
+
+    function asArray(value) {
+      if (!value) return [];
+
+      if (Array.isArray(value)) {
+        return value.filter(item => item !== null && item !== undefined && item !== "");
+      }
+
+      return [value];
+    }
+
+
+    function uniqueSorted(values) {
+      return [...new Set(
+        values
+          .filter(value => value !== null && value !== undefined && value !== "")
+          .map(value => String(value))
+      )].sort((a, b) => {
+        const aNum = Number(a);
+        const bNum = Number(b);
+
+        if (!Number.isNaN(aNum) && !Number.isNaN(bNum)) {
+          return bNum - aNum;
+        }
+
+        return a.localeCompare(b);
+      });
+    }
+
+
+    function getPageText(problem) {
+      const page = problem.page;
+      const endPage = problem.end_page;
+
+      if (page && endPage && Number(page) !== Number(endPage)) {
+        return `Pages ${escapeHTML(page)}–${escapeHTML(endPage)}`;
+      }
+
+      if (page) {
+        return `Page ${escapeHTML(page)}`;
+      }
+
+      return "Page information unavailable";
+    }
+
+
+    function getPDFUrl(problem) {
+      const filename = String(problem.pdf_filename || "").trim();
+
+      if (!filename) {
+        return null;
+      }
+
+      return `pdfs/${encodeURIComponent(filename)}${problem.page ? `#page=${encodeURIComponent(problem.page)}` : ""}`;
+    }
+
+
+    function createTag(text, className) {
+      return `
+        <span class="inline-flex max-w-full items-center rounded-lg px-2.5 py-1 text-[11px] font-semibold leading-4 ${className}">
+          <span class="truncate">${escapeHTML(text)}</span>
+        </span>
+      `;
+    }
+
+
+    /*
+     * ==========================================================
+     * DATA LOADING
+     * ==========================================================
+     */
+
+    async function fetchJSON(url) {
+      const response = await fetch(url, {
+        cache: "no-cache"
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP ${response.status} while loading ${url}`);
+      }
+
+      const data = await response.json();
+
+      if (!Array.isArray(data)) {
+        throw new Error(`${url} does not contain a JSON array.`);
+      }
+
+      return data;
+    }
+
+
+    async function loadDatabase() {
+      setLoadingState(true);
+
+      try {
+        /*
+         * First attempt: merged_database.json
+         */
+        try {
+          const merged = await fetchJSON(MERGED_DATABASE);
+
+          allProblems = merged;
+          setDataStatus(
+            `Loaded ${allProblems.length.toLocaleString()} problems`,
+            "success"
+          );
+
+        } catch (mergedError) {
+          /*
+           * Fallback: load all configured JSON files concurrently.
+           */
+          if (!JSON_FILES.length) {
+            throw new Error(
+              "merged_database.json was not found and JSON_FILES is empty."
+            );
+          }
+
+          const datasets = await Promise.all(
+            JSON_FILES.map(file => fetchJSON(file))
+          );
+
+          allProblems = datasets.flat();
+
+          setDataStatus(
+            `Loaded ${allProblems.length.toLocaleString()} problems from ${datasets.length} files`,
+            "success"
+          );
+        }
+
+        /*
+         * Remove invalid/non-object records.
+         */
+        allProblems = allProblems.filter(
+          problem => problem && typeof problem === "object"
+        );
+
+        /*
+         * Optional de-duplication by problem_id.
+         *
+         * If a problem_id is absent, the record is retained.
+         */
+        const seen = new Set();
+
+        allProblems = allProblems.filter(problem => {
+          const id = problem.problem_id;
+
+          if (!id) {
+            return true;
+          }
+
+          if (seen.has(id)) {
+            return false;
+          }
+
+          seen.add(id);
+          return true;
+        });
+
+        populateFilters();
+        applyFilters();
+
+        setLoadingState(false);
+
+      } catch (error) {
+        console.error("Database loading error:", error);
+
+        setLoadingState(false);
+        showError(
+          `Could not load the database. ${error.message || "Unknown error."}`
+        );
+      }
+    }
+
+
+    /*
+     * ==========================================================
+     * FILTER OPTIONS
+     * ==========================================================
+     */
+
+    function populateFilters() {
+      const nations = uniqueSorted(
+        allProblems.map(problem => problem.nation)
+      );
+
+      const olympiads = uniqueSorted(
+        allProblems.map(problem => problem.olympiad)
+      );
+
+      const years = uniqueSorted(
+        allProblems.map(problem => problem.year)
+      );
+
+      const types = uniqueSorted(
+        allProblems.map(problem => problem.problem_type)
+      );
+
+      populateSelect(
+        nationFilter,
+        "All nations",
+        nations
+      );
+
+      populateSelect(
+        olympiadFilter,
+        "All olympiads",
+        olympiads
+      );
+
+      populateSelect(
+        yearFilter,
+        "All years",
+        years
+      );
+
+      populateSelect(
+        typeFilter,
+        "All problem types",
+        types
+      );
+
+      populateSubsetButtons();
+    }
+
+
+    function populateSelect(select, defaultLabel, values) {
+      select.innerHTML = "";
+
+      const defaultOption = document.createElement("option");
+      defaultOption.value = "";
+      defaultOption.textContent = defaultLabel;
+      select.appendChild(defaultOption);
+
+      values.forEach(value => {
+        const option = document.createElement("option");
+        option.value = value;
+        option.textContent = value;
+        select.appendChild(option);
+      });
+    }
+
+
+    function populateSubsetButtons() {
+      const preferredOrder = [
+        "Organic",
+        "Physical",
+        "Inorganic",
+        "Analytical",
+        "Biochemistry"
+      ];
+
+      const actualSubsets = uniqueSorted(
+        allProblems.map(problem => problem.subset)
+      );
+
+      const preferred = preferredOrder.filter(
+        subset => actualSubsets.some(
+          actual => actual.toLowerCase() === subset.toLowerCase()
+        )
+      );
+
+      const remaining = actualSubsets.filter(
+        subset =>
+          !preferred.some(
+            preferredSubset =>
+              preferredSubset.toLowerCase() === subset.toLowerCase()
+          )
+      );
+
+      const subsets = ["", ...preferred, ...remaining];
+
+      subsetFilters.innerHTML = subsets.map(subset => {
+        const label = subset || "All";
+
+        return `
+          <button
+            type="button"
+            data-subset="${escapeHTML(subset)}"
+            class="subset-button rounded-xl border px-3.5 py-2 text-xs font-semibold transition"
+          >
+            ${escapeHTML(label)}
+          </button>
+        `;
+      }).join("");
+
+      updateSubsetButtonStyles();
+    }
+
+
+    function updateSubsetButtonStyles() {
+      document.querySelectorAll(".subset-button").forEach(button => {
+        const value = button.dataset.subset || "";
+        const isActive = value === state.subset;
+
+        if (isActive) {
+          button.className =
+            "subset-button rounded-xl border border-indigo-600 bg-indigo-600 px-3.5 py-2 text-xs font-semibold text-white shadow-sm transition";
+        } else {
+          button.className =
+            "subset-button rounded-xl border border-slate-200 bg-white px-3.5 py-2 text-xs font-semibold text-slate-600 transition hover:border-indigo-200 hover:bg-indigo-50 hover:text-indigo-700";
+        }
+      });
+    }
+
+
+    /*
+     * ==========================================================
+     * SEARCH + FILTERING
+     * ==========================================================
+     */
+
+    function problemMatchesSearch(problem, query) {
+      if (!query) {
+        return true;
+      }
+
+      /*
+       * Search is intentionally limited to the fields requested:
+       *
+       * problem_title
+       * themes
+       * named_reactions
+       * target_compounds
+       * skills_required
+       */
+      const searchableText = [
+        problem.problem_title,
+        ...asArray(problem.themes),
+        ...asArray(problem.named_reactions),
+        ...asArray(problem.target_compounds),
+        ...asArray(problem.skills_required)
+      ]
+        .map(normalize)
+        .join(" ");
+
+      return searchableText.includes(query);
+    }
+
+
+    function applyFilters() {
+      const query = normalize(state.search);
+
+      filteredProblems = allProblems.filter(problem => {
+
+        if (!problemMatchesSearch(problem, query)) {
+          return false;
+        }
+
+        if (
+          state.subset &&
+          normalize(problem.subset) !== normalize(state.subset)
+        ) {
+          return false;
+        }
+
+        if (
+          state.nation &&
+          String(problem.nation) !== String(state.nation)
+        ) {
+          return false;
+        }
+
+        if (
+          state.olympiad &&
+          String(problem.olympiad) !== String(state.olympiad)
+        ) {
+          return false;
+        }
+
+        if (
+          state.year &&
+          String(problem.year) !== String(state.year)
+        ) {
+          return false;
+        }
+
+        if (
+          state.problemType &&
+          String(problem.problem_type) !== String(state.problemType)
+        ) {
+          return false;
+        }
+
+        return true;
+      });
+
+      renderResults();
+      updateResultsMeta();
+      updateSubsetButtonStyles();
+      updateSearchClearButton();
+    }
+
+
+    /*
+     * ==========================================================
+     * RESULT RENDERING
+     * ==========================================================
+     */
+
+    function renderResults() {
+      resultsGrid.innerHTML = "";
+
+      if (!filteredProblems.length) {
+        resultsGrid.classList.add("hidden");
+        emptyState.classList.remove("hidden");
+        return;
+      }
+
+      resultsGrid.classList.remove("hidden");
+      emptyState.classList.add("hidden");
+
+      const fragment = document.createDocumentFragment();
+
+      filteredProblems.forEach(problem => {
+        const wrapper = document.createElement("div");
+        wrapper.innerHTML = createProblemCard(problem);
+        fragment.appendChild(wrapper.firstElementChild);
+      });
+
+      resultsGrid.appendChild(fragment);
+    }
+
+
+    function createProblemCard(problem) {
+      const title =
+        problem.problem_title ||
+        problem.problem_id ||
+        "Untitled Problem";
+
+      const themes = asArray(problem.themes);
+      const reactions = asArray(problem.named_reactions);
+      const compounds = asArray(problem.target_compounds);
+      const skills = asArray(problem.skills_required);
+
+      const pdfUrl = getPDFUrl(problem);
+
+      const badges = [
+        problem.olympiad
+          ? createTag(
+              problem.olympiad,
+              "bg-indigo-50 text-indigo-700"
+            )
+          : "",
+
+        problem.year
+          ? createTag(
+              problem.year,
+              "bg-slate-100 text-slate-600"
+            )
+          : "",
+
+        problem.nation
+          ? createTag(
+              problem.nation,
+              "bg-sky-50 text-sky-700"
+            )
+          : "",
+
+        problem.subset
+          ? createTag(
+              problem.subset,
+              "bg-violet-50 text-violet-700"
+            )
+          : ""
+      ].join("");
+
+
+      const themeTags = themes.length
+        ? themes.slice(0, 8).map(theme =>
+            createTag(
+              theme,
+              "bg-slate-100 text-slate-600"
+            )
+          ).join("")
+        : `<span class="text-xs text-slate-400">No themes listed</span>`;
+
+
+      const reactionTags = reactions.length
+        ? `
+          <div class="mt-4">
+            <p class="mb-2 text-[10px] font-bold uppercase tracking-wider text-slate-400">
+              Named reactions
+            </p>
+            <div class="flex flex-wrap gap-1.5">
+              ${reactions.slice(0, 6).map(reaction =>
+                createTag(
+                  reaction,
+                  "bg-emerald-50 text-emerald-700 ring-1 ring-inset ring-emerald-100"
+                )
+              ).join("")}
+            </div>
+          </div>
+        `
+        : "";
+
+
+      const compoundTags = compounds.length
+        ? `
+          <div class="mt-4">
+            <p class="mb-2 text-[10px] font-bold uppercase tracking-wider text-slate-400">
+              Target compounds
+            </p>
+            <div class="flex flex-wrap gap-1.5">
+              ${compounds.slice(0, 6).map(compound =>
+                createTag(
+                  compound,
+                  "bg-blue-50 text-blue-700 ring-1 ring-inset ring-blue-100"
+                )
+              ).join("")}
+            </div>
+          </div>
+        `
+        : "";
+
+
+      const skillTags = skills.length
+        ? `
+          <div class="mt-4">
+            <p class="mb-2 text-[10px] font-bold uppercase tracking-wider text-slate-400">
+              Skills
+            </p>
+            <div class="flex flex-wrap gap-1.5">
+              ${skills.slice(0, 6).map(skill =>
+                createTag(
+                  skill,
+                  "bg-amber-50 text-amber-700 ring-1 ring-inset ring-amber-100"
+                )
+              ).join("")}
+            </div>
+          </div>
+        `
+        : "";
+
+
+      const pdfButton = pdfUrl
+        ? `
+          <a
+            href="${escapeHTML(pdfUrl)}"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex flex-1 items-center justify-center gap-2 rounded-xl bg-indigo-600 px-4 py-2.5 text-xs font-bold text-white shadow-sm transition hover:bg-indigo-700 focus:outline-none focus:ring-4 focus:ring-indigo-100"
+            aria-label="Open PDF for ${escapeHTML(title)}"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.9"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+              <path d="M14 2v6h6"></path>
+              <path d="M8 13h8"></path>
+              <path d="M8 17h5"></path>
+            </svg>
+            Open Problem PDF
+          </a>
+        `
+        : `
+          <span
+            class="inline-flex flex-1 cursor-not-allowed items-center justify-center gap-2 rounded-xl bg-slate-100 px-4 py-2.5 text-xs font-bold text-slate-400"
+            title="No PDF filename is available for this problem"
+          >
+            PDF unavailable
+          </span>
+        `;
+
+
+      return `
+        <article
+          class="card-hover fade-in flex min-h-[420px] flex-col overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm"
+        >
+
+          <!-- Card Header -->
+          <div class="border-b border-slate-100 p-5">
+            <div class="mb-4 flex flex-wrap gap-1.5">
+              ${badges || createTag("Problem", "bg-slate-100 text-slate-600")}
+            </div>
+
+            <h3
+              class="line-clamp-3 text-base font-bold leading-6 tracking-tight text-slate-950"
+              title="${escapeHTML(title)}"
+            >
+              ${escapeHTML(title)}
+            </h3>
+
+            ${
+              problem.problem_id
+                ? `
+                  <p class="mt-2 truncate font-mono text-[10px] font-medium text-slate-400" title="${escapeHTML(problem.problem_id)}">
+                    ${escapeHTML(problem.problem_id)}
+                  </p>
+                `
+                : ""
+            }
+          </div>
+
+          <!-- Card Body -->
+          <div class="flex-1 p-5">
+
+            <div>
+              <p class="mb-2 text-[10px] font-bold uppercase tracking-wider text-slate-400">
+                Themes
+              </p>
+
+              <div class="flex max-h-[74px] flex-wrap gap-1.5 overflow-hidden">
+                ${themeTags}
+              </div>
+            </div>
+
+            ${reactionTags}
+            ${compoundTags}
+            ${skillTags}
+
+          </div>
+
+          <!-- Card Footer -->
+          <div class="border-t border-slate-100 bg-slate-50/70 p-4">
+
+            <div class="mb-3 flex items-center justify-between gap-3 text-xs text-slate-500">
+              <span class="inline-flex items-center gap-1.5 font-semibold">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                  <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+                </svg>
+                ${getPageText(problem)}
+              </span>
+
+              ${
+                problem.original_language
+                  ? `
+                    <span class="truncate text-[11px] font-medium text-slate-400">
+                      ${escapeHTML(problem.original_language)}
+                    </span>
+                  `
+                  : ""
+              }
+            </div>
+
+            <div class="flex gap-2">
+              ${pdfButton}
+            </div>
+
+          </div>
+
+        </article>
+      `;
+    }
+
+
+    /*
+     * ==========================================================
+     * RESULT METADATA
+     * ==========================================================
+     */
+
+    function updateResultsMeta() {
+      const total = allProblems.length;
+      const shown = filteredProblems.length;
+
+      resultsCount.textContent =
+        `Showing ${shown.toLocaleString()} of ${total.toLocaleString()} problems`;
+
+      const active = [];
+
+      if (state.search) {
+        active.push(`Search: "${state.search}"`);
+      }
+
+      if (state.subset) {
+        active.push(`Subset: ${state.subset}`);
+      }
+
+      if (state.nation) {
+        active.push(`Nation: ${state.nation}`);
+      }
+
+      if (state.olympiad) {
+        active.push(`Olympiad: ${state.olympiad}`);
+      }
+
+      if (state.year) {
+        active.push(`Year: ${state.year}`);
+      }
+
+      if (state.problemType) {
+        active.push(`Type: ${state.problemType}`);
+      }
+
+      if (active.length) {
+        activeFilters.textContent = active.join("  •  ");
+        activeFilters.classList.remove("hidden");
+      } else {
+        activeFilters.classList.add("hidden");
+      }
+    }
+
+
+    function updateSearchClearButton() {
+      if (state.search) {
+        clearSearch.classList.remove("hidden");
+        clearSearch.classList.add("flex");
+      } else {
+        clearSearch.classList.add("hidden");
+        clearSearch.classList.remove("flex");
+      }
+    }
+
+
+    /*
+     * ==========================================================
+     * STATUS / UI STATES
+     * ==========================================================
+     */
+
+    function setDataStatus(message, type = "loading") {
+      const styles = {
+        loading: {
+          wrapper: "bg-slate-100 text-slate-500",
+          dot: "bg-slate-400"
+        },
+        success: {
+          wrapper: "bg-emerald-50 text-emerald-700",
+          dot: "bg-emerald-500"
+        },
+        error: {
+          wrapper: "bg-red-50 text-red-700",
+          dot: "bg-red-500"
+        }
+      };
+
+      const style = styles[type] || styles.loading;
+
+      dataStatus.className =
+        `inline-flex items-center gap-2 self-start rounded-full px-3 py-1.5 text-xs font-medium sm:self-auto ${style.wrapper}`;
+
+      dataStatus.innerHTML = `
+        <span class="h-1.5 w-1.5 rounded-full ${style.dot}"></span>
+        ${escapeHTML(message)}
+      `;
+    }
+
+
+    function setLoadingState(isLoading) {
+      if (isLoading) {
+        loadingState.classList.remove("hidden");
+        resultsGrid.classList.add("hidden");
+        emptyState.classList.add("hidden");
+        errorState.classList.add("hidden");
+
+        setDataStatus("Loading database", "loading");
+      } else {
+        loadingState.classList.add("hidden");
+      }
+    }
+
+
+    function showError(message) {
+      loadingState.classList.add("hidden");
+      resultsGrid.classList.add("hidden");
+      emptyState.classList.add("hidden");
+      errorState.classList.remove("hidden");
+
+      errorMessage.textContent = message;
+      setDataStatus("Database error", "error");
+      resultsCount.textContent = "Unable to display problems";
+    }
+
+
+    /*
+     * ==========================================================
+     * EVENT LISTENERS
+     * ==========================================================
+     */
+
+    searchInput.addEventListener("input", event => {
+      state.search = event.target.value;
+      applyFilters();
+    });
+
+
+    clearSearch.addEventListener("click", () => {
+      state.search = "";
+      searchInput.value = "";
+      searchInput.focus();
+      applyFilters();
+    });
+
+
+    subsetFilters.addEventListener("click", event => {
+      const button = event.target.closest(".subset-button");
+
+      if (!button) {
+        return;
+      }
+
+      state.subset = button.dataset.subset || "";
+      applyFilters();
+    });
+
+
+    nationFilter.addEventListener("change", event => {
+      state.nation = event.target.value;
+      applyFilters();
+    });
+
+
+    olympiadFilter.addEventListener("change", event => {
+      state.olympiad = event.target.value;
+      applyFilters();
+    });
+
+
+    yearFilter.addEventListener("change", event => {
+      state.year = event.target.value;
+      applyFilters();
+    });
+
+
+    typeFilter.addEventListener("change", event => {
+      state.problemType = event.target.value;
+      applyFilters();
+    });
+
+
+    function resetAllFilters() {
+      state = {
+        search: "",
+        subset: "",
+        nation: "",
+        olympiad: "",
+        year: "",
+        problemType: ""
+      };
+
+      searchInput.value = "";
+      nationFilter.value = "";
+      olympiadFilter.value = "";
+      yearFilter.value = "";
+      typeFilter.value = "";
+
+      applyFilters();
+    }
+
+
+    resetFilters.addEventListener("click", resetAllFilters);
+    emptyResetButton.addEventListener("click", resetAllFilters);
+    retryButton.addEventListener("click", loadDatabase);
+
+
+    /*
+     * ==========================================================
+     * KEYBOARD SHORTCUT
+     * ==========================================================
+     *
+     * Press "/" to focus the search box, unless the user is
+     * already typing in an input/select/textarea.
+     */
+
+    document.addEventListener("keydown", event => {
+      const tag = document.activeElement?.tagName?.toLowerCase();
+
+      const isTyping =
+        tag === "input" ||
+        tag === "textarea" ||
+        tag === "select";
+
+      if (
+        event.key === "/" &&
+        !isTyping &&
+        !event.ctrlKey &&
+        !event.metaKey &&
+        !event.altKey
+      ) {
+        event.preventDefault();
+        searchInput.focus();
+      }
+
+      if (event.key === "Escape" && document.activeElement === searchInput) {
+        if (state.search) {
+          clearSearch.click();
+        } else {
+          searchInput.blur();
+        }
+      }
+    });
+
+
+    /*
+     * ==========================================================
+     * INITIALIZE
+     * ==========================================================
+     */
+
+    loadDatabase();
+
+  </script>
+
+</body>
+</html>
 
