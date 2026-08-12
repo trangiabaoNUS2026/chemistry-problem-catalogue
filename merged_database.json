@@ -1,1 +1,931 @@
-
+[
+  {
+    "problem_id": "2026-IChO-Prep-P1",
+    "problem_title": "Problem 1: Khoja Nasreddin is now a chemist",
+    "nation": "Uzbekistan",
+    "olympiad": "IChO Preparatory",
+    "year": 2026,
+    "subset": "Inorganic",
+    "problem_type": "Theoretical",
+    "themes": [
+      "thermal decomposition",
+      "stoichiometry",
+      "liquid ammonia",
+      "complex cations",
+      "gas laws"
+    ],
+    "named_reactions": [],
+    "target_compounds": [
+      "salt A",
+      "salt B",
+      "salt D"
+    ],
+    "skills_required": [
+      "ideal gas law calculations",
+      "mass fraction analysis",
+      "redox equation balancing"
+    ],
+    "original_language": "English",
+    "pdf_filename": "FILENAME_PLACEHOLDER.pdf",
+    "page": 4,
+    "end_page": 5
+  },
+  {
+    "problem_id": "2026-IChO-Prep-P2",
+    "problem_title": "Problem 2: Avicenna",
+    "nation": "Uzbekistan",
+    "olympiad": "IChO Preparatory",
+    "year": 2026,
+    "subset": "Analytical",
+    "problem_type": "Theoretical",
+    "themes": [
+      "qualitative inorganic analysis",
+      "gravimetric analysis",
+      "solubility rules",
+      "coordination compounds"
+    ],
+    "named_reactions": [],
+    "target_compounds": [
+      "barium chloride",
+      "potassium bromate"
+    ],
+    "skills_required": [
+      "stoichiometry",
+      "determining molecular formula",
+      "reaction scheme interpretation"
+    ],
+    "original_language": "English",
+    "pdf_filename": "FILENAME_PLACEHOLDER.pdf",
+    "page": 6,
+    "end_page": 6
+  },
+  {
+    "problem_id": "2026-IChO-Prep-P3",
+    "problem_title": "Problem 3: Unusual inorganic synthesis",
+    "nation": "Uzbekistan",
+    "olympiad": "IChO Preparatory",
+    "year": 2026,
+    "subset": "Inorganic",
+    "problem_type": "Theoretical",
+    "themes": [
+      "radiochemistry",
+      "electrolysis",
+      "iodometric titration",
+      "chemical kinetics",
+      "noble gas compounds"
+    ],
+    "named_reactions": [],
+    "target_compounds": [
+      "xenon difluoride",
+      "sodium thiosulfate"
+    ],
+    "skills_required": [
+      "Faraday's laws of electrolysis",
+      "first-order rate calculations",
+      "titration stoichiometry"
+    ],
+    "original_language": "English",
+    "pdf_filename": "FILENAME_PLACEHOLDER.pdf",
+    "page": 7,
+    "end_page": 8
+  },
+  {
+    "problem_id": "2026-IChO-Prep-P4",
+    "problem_title": "Problem 4: Nanozymes",
+    "nation": "Uzbekistan",
+    "olympiad": "IChO Preparatory",
+    "year": 2026,
+    "subset": "Physical",
+    "problem_type": "Theoretical",
+    "themes": [
+      "nanoparticles",
+      "catalysis",
+      "Michaelis-Menten kinetics",
+      "mass spectrometry"
+    ],
+    "named_reactions": [
+      "Michaelis-Menten kinetics"
+    ],
+    "target_compounds": [
+      "tetramethylammonium hydroxide",
+      "para-nitrophenyl phosphate"
+    ],
+    "skills_required": [
+      "mass spectrometry interpretation",
+      "calculating kinetic parameters",
+      "surface area-to-volume ratio analysis"
+    ],
+    "original_language": "English",
+    "pdf_filename": "FILENAME_PLACEHOLDER.pdf",
+    "page": 9,
+    "end_page": 10
+  },
+  {
+    "problem_id": "2026-IChO-Prep-P5",
+    "problem_title": "Problem 5: Haber–Bosch process",
+    "nation": "Uzbekistan",
+    "olympiad": "IChO Preparatory",
+    "year": 2026,
+    "subset": "Physical",
+    "problem_type": "Theoretical",
+    "themes": [
+      "chemical equilibrium",
+      "thermodynamics",
+      "catalytic mechanisms",
+      "surface chemistry"
+    ],
+    "named_reactions": [],
+    "target_compounds": [
+      "Ammonia",
+      "Magnetite"
+    ],
+    "skills_required": [
+      "van't Hoff equation",
+      "equilibrium constant calculations",
+      "surface area and rate proportionality"
+    ],
+    "original_language": "English",
+    "pdf_filename": "FILENAME_PLACEHOLDER.pdf",
+    "page": 11,
+    "end_page": 13
+  },
+  {
+    "problem_id": "2026-IChO-Prep-P6",
+    "problem_title": "Problem 6: Hydrogen fuel",
+    "nation": "Uzbekistan",
+    "olympiad": "IChO Preparatory",
+    "year": 2026,
+    "subset": "Physical",
+    "problem_type": "Theoretical",
+    "themes": [
+      "enthalpy of combustion",
+      "energy density",
+      "adiabatic flame temperature",
+      "chemical equilibrium",
+      "gas emissions"
+    ],
+    "named_reactions": [],
+    "target_compounds": [
+      "Hydrogen",
+      "Methane",
+      "Isooctane",
+      "Nitrogen oxides"
+    ],
+    "skills_required": [
+      "thermochemical calculations",
+      "energy balance",
+      "equilibrium composition analysis"
+    ],
+    "original_language": "English",
+    "pdf_filename": "FILENAME_PLACEHOLDER.pdf",
+    "page": 14,
+    "end_page": 15
+  },
+  {
+    "problem_id": "2026-IChO-Prep-P7",
+    "problem_title": "Problem 7: 150 Years of Urease",
+    "nation": "Uzbekistan",
+    "olympiad": "IChO Preparatory",
+    "year": 2026,
+    "subset": "Biochemistry",
+    "problem_type": "Theoretical",
+    "themes": [
+      "enzyme kinetics",
+      "steady-state approximation",
+      "pH-activity profile",
+      "enzyme inhibition",
+      "biomineralization"
+    ],
+    "named_reactions": [
+      "Michaelis-Menten kinetics"
+    ],
+    "target_compounds": [
+      "Urease",
+      "Urea",
+      "Boric acid",
+      "Calcium carbonate"
+    ],
+    "skills_required": [
+      "deriving rate laws",
+      "phase portrait matching",
+      "solubility product calculations"
+    ],
+    "original_language": "English",
+    "pdf_filename": "FILENAME_PLACEHOLDER.pdf",
+    "page": 16,
+    "end_page": 18
+  },
+  {
+    "problem_id": "2026-IChO-Prep-P8",
+    "problem_title": "Problem 8: Step-by-step",
+    "nation": "Uzbekistan",
+    "olympiad": "IChO Preparatory",
+    "year": 2026,
+    "subset": "Physical",
+    "problem_type": "Theoretical",
+    "themes": [
+      "step-growth polymerization",
+      "reaction kinetics",
+      "polyesters",
+      "reaction mechanism"
+    ],
+    "named_reactions": [
+      "Carothers equation"
+    ],
+    "target_compounds": [
+      "bisphenol A",
+      "dichlorodiphenylsulfone",
+      "difluorodiphenylsulfone"
+    ],
+    "skills_required": [
+      "initial rate method",
+      "kinetic derivation",
+      "degree of polymerization calculation"
+    ],
+    "original_language": "English",
+    "pdf_filename": "FILENAME_PLACEHOLDER.pdf",
+    "page": 19,
+    "end_page": 21
+  },
+  {
+    "problem_id": "2026-IChO-Prep-P9",
+    "problem_title": "Problem 9: Host-guest chemistry of cucurbiturils as Uzbek hospitality",
+    "nation": "Uzbekistan",
+    "olympiad": "IChO Preparatory",
+    "year": 2026,
+    "subset": "Multi-field",
+    "problem_type": "Theoretical",
+    "themes": [
+      "supramolecular chemistry",
+      "macrocycles",
+      "UV-Vis spectroscopy",
+      "catalysis",
+      "binding affinity"
+    ],
+    "named_reactions": [
+      "Tollens reaction"
+    ],
+    "target_compounds": [
+      "Cucurbiturils",
+      "Tropicamide",
+      "Cyclopentadiene"
+    ],
+    "skills_required": [
+      "structure determination",
+      "spectroscopic data interpretation",
+      "kinetic derivation"
+    ],
+    "original_language": "English",
+    "pdf_filename": "FILENAME_PLACEHOLDER.pdf",
+    "page": 22,
+    "end_page": 25
+  },
+  {
+    "problem_id": "2026-IChO-Prep-P10",
+    "problem_title": "Problem 10: Prebiotic life",
+    "nation": "Uzbekistan",
+    "olympiad": "IChO Preparatory",
+    "year": 2026,
+    "subset": "Organic",
+    "problem_type": "Theoretical",
+    "themes": [
+      "origin of life",
+      "homochirality",
+      "stereochemistry",
+      "kinetic resolution",
+      "hydrogen atom transfer"
+    ],
+    "named_reactions": [],
+    "target_compounds": [
+      "Cyanamide",
+      "Glycoaldehyde",
+      "Glyceraldehyde",
+      "Cytosine"
+    ],
+    "skills_required": [
+      "structural drawing",
+      "stereoisomer identification",
+      "kinetic amplification analysis"
+    ],
+    "original_language": "English",
+    "pdf_filename": "FILENAME_PLACEHOLDER.pdf",
+    "page": 26,
+    "end_page": 31
+  },
+  {
+    "problem_id": "2026-IChO-Prep-P11",
+    "problem_title": "Problem 11: Fluorescence, phosphorescence and quenching",
+    "nation": "Uzbekistan",
+    "olympiad": "IChO Preparatory",
+    "year": 2026,
+    "subset": "Physical",
+    "problem_type": "Theoretical",
+    "themes": [
+      "photophysics",
+      "Jablonski diagram",
+      "quantum yield",
+      "quenching kinetics",
+      "energy transfer"
+    ],
+    "named_reactions": [
+      "Stern-Volmer equation",
+      "Diels-Alder"
+    ],
+    "target_compounds": [
+      "Tryptophan",
+      "molecular oxygen"
+    ],
+    "skills_required": [
+      "deriving kinetic expressions",
+      "Arrhenius analysis",
+      "linear regression interpretation"
+    ],
+    "original_language": "English",
+    "pdf_filename": "FILENAME_PLACEHOLDER.pdf",
+    "page": 32,
+    "end_page": 35
+  },
+  {
+    "problem_id": "2026-IChO-Prep-P12",
+    "problem_title": "Problem 12: Photoacids",
+    "nation": "Uzbekistan",
+    "olympiad": "IChO Preparatory",
+    "year": 2026,
+    "subset": "Physical",
+    "problem_type": "Theoretical",
+    "themes": [
+      "excited state proton transfer",
+      "aromaticity",
+      "Beer-Lambert law",
+      "pKa determination",
+      "photochemistry"
+    ],
+    "named_reactions": [
+      "Baird’s rules",
+      "Förster cycle"
+    ],
+    "target_compounds": [
+      "2-naphthol",
+      "merocyanines",
+      "spiropyrans"
+    ],
+    "skills_required": [
+      "spectrophotometric titration",
+      "deriving thermodynamic relations",
+      "aromaticity classification"
+    ],
+    "original_language": "English",
+    "pdf_filename": "FILENAME_PLACEHOLDER.pdf",
+    "page": 36,
+    "end_page": 40
+  },
+  {
+    "problem_id": "2026-IChO-Prep-P13",
+    "problem_title": "Problem 13: Interested in micelles?",
+    "nation": "Uzbekistan",
+    "olympiad": "IChO Preparatory",
+    "year": 2026,
+    "subset": "Physical",
+    "problem_type": "Theoretical",
+    "themes": [
+      "micelles",
+      "surfactants",
+      "dendrimers",
+      "critical micelle concentration",
+      "self-assembly"
+    ],
+    "named_reactions": [],
+    "target_compounds": [
+      "phosphorus dendrons",
+      "polystyrene"
+    ],
+    "skills_required": [
+      "geometric modeling",
+      "thermodynamic derivation",
+      "conductivity data analysis"
+    ],
+    "original_language": "English",
+    "pdf_filename": "FILENAME_PLACEHOLDER.pdf",
+    "page": 41,
+    "end_page": 44
+  },
+  {
+    "problem_id": "2026-IChO-Prep-P14",
+    "problem_title": "Problem 14: The basics of Metal–Organic Frameworks",
+    "nation": "Uzbekistan",
+    "olympiad": "IChO Preparatory",
+    "year": 2026,
+    "subset": "Inorganic",
+    "problem_type": "Theoretical",
+    "themes": [
+      "coordination polymers",
+      "MOFs",
+      "crystal structures",
+      "porosity",
+      "hydrogen storage"
+    ],
+    "named_reactions": [],
+    "target_compounds": [
+      "MOF-5",
+      "1,4-benzenedicarboxylate"
+    ],
+    "skills_required": [
+      "empirical formula determination",
+      "unit cell geometry calculations",
+      "gas uptake estimation"
+    ],
+    "original_language": "English",
+    "pdf_filename": "FILENAME_PLACEHOLDER.pdf",
+    "page": 45,
+    "end_page": 46
+  },
+  {
+    "problem_id": "2026-IChO-Prep-P15",
+    "problem_title": "Problem 15: Microscopy in chemistry",
+    "nation": "Uzbekistan",
+    "olympiad": "IChO Preparatory",
+    "year": 2026,
+    "subset": "Multi-field",
+    "problem_type": "Theoretical",
+    "themes": [
+      "AFM imaging",
+      "polycyclic aromatic hydrocarbons",
+      "quantum magnet chains",
+      "radical centres",
+      "isomerisation"
+    ],
+    "named_reactions": [],
+    "target_compounds": [
+      "pyrene-4-carbaldehyde",
+      "Olympicene"
+    ],
+    "skills_required": [
+      "structural interpretation of microscopy",
+      "mass spectrometry logic",
+      "quantum physics applications"
+    ],
+    "original_language": "English",
+    "pdf_filename": "FILENAME_PLACEHOLDER.pdf",
+    "page": 47,
+    "end_page": 49
+  },
+  {
+    "problem_id": "2026-IChO-Prep-P16",
+    "problem_title": "Problem 16: Kinase inhibitors",
+    "nation": "Uzbekistan",
+    "olympiad": "IChO Preparatory",
+    "year": 2026,
+    "subset": "Organic",
+    "problem_type": "Theoretical",
+    "themes": [
+      "medicinal chemistry",
+      "enzyme inhibition",
+      "total synthesis",
+      "heterocyclic chemistry"
+    ],
+    "named_reactions": [],
+    "target_compounds": [
+      "Kinase inhibitors",
+      "N-chlorosuccinimide"
+    ],
+    "skills_required": [
+      "retrosynthetic analysis",
+      "structure-activity relationship analysis",
+      "mechanistic reasoning"
+    ],
+    "original_language": "English",
+    "pdf_filename": "FILENAME_PLACEHOLDER.pdf",
+    "page": 50,
+    "end_page": 52
+  },
+  {
+    "problem_id": "2026-IChO-Prep-P17",
+    "problem_title": "Problem 17: Carbohydrate chemistry",
+    "nation": "Uzbekistan",
+    "olympiad": "IChO Preparatory",
+    "year": 2026,
+    "subset": "Organic",
+    "problem_type": "Theoretical",
+    "themes": [
+      "monosaccharides",
+      "protecting groups",
+      "regioselectivity",
+      "stereochemistry",
+      "acetal formation"
+    ],
+    "named_reactions": [],
+    "target_compounds": [
+      "Glucose",
+      "Glucopyranose",
+      "boronic acids"
+    ],
+    "skills_required": [
+      "chair conformation drawing",
+      "synthetic scheme completion",
+      "stereocenter tracking"
+    ],
+    "original_language": "English",
+    "pdf_filename": "FILENAME_PLACEHOLDER.pdf",
+    "page": 53,
+    "end_page": 55
+  },
+  {
+    "problem_id": "2026-IChO-Prep-P18",
+    "problem_title": "Problem 18: Inositol",
+    "nation": "Uzbekistan",
+    "olympiad": "IChO Preparatory",
+    "year": 2026,
+    "subset": "Biochemistry",
+    "problem_type": "Theoretical",
+    "themes": [
+      "biosynthesis",
+      "stereoisomerism",
+      "phosphorylation",
+      "chirality"
+    ],
+    "named_reactions": [],
+    "target_compounds": [
+      "myo-inositol",
+      "amylose",
+      "IP6"
+    ],
+    "skills_required": [
+      "symmetry analysis",
+      "isomer counting",
+      "biochemical pathway mapping"
+    ],
+    "original_language": "English",
+    "pdf_filename": "FILENAME_PLACEHOLDER.pdf",
+    "page": 56,
+    "end_page": 57
+  },
+  {
+    "problem_id": "2026-IChO-Prep-P19",
+    "problem_title": "Problem 19: Carbohydrates as chiral pools",
+    "nation": "Uzbekistan",
+    "olympiad": "IChO Preparatory",
+    "year": 2026,
+    "subset": "Organic",
+    "problem_type": "Theoretical",
+    "themes": [
+      "chiral pool synthesis",
+      "total synthesis",
+      "asymmetric catalysis",
+      "natural products"
+    ],
+    "named_reactions": [],
+    "target_compounds": [
+      "Thromboxane B2",
+      "Actinobolin",
+      "Swainsonine",
+      "L-sorbose"
+    ],
+    "skills_required": [
+      "stereoselective synthesis planning",
+      "complex structure drawing",
+      "reaction sequence optimization"
+    ],
+    "original_language": "English",
+    "pdf_filename": "FILENAME_PLACEHOLDER.pdf",
+    "page": 58,
+    "end_page": 60
+  },
+  {
+    "problem_id": "2026-IChO-Prep-P20",
+    "problem_title": "Problem 20: Pacman, Hangman, Cageman",
+    "nation": "Uzbekistan",
+    "olympiad": "IChO Preparatory",
+    "year": 2026,
+    "subset": "Multi-field",
+    "problem_type": "Theoretical",
+    "themes": [
+      "porphyrins",
+      "biomimetic catalysts",
+      "coordination chemistry",
+      "supramolecular architecture"
+    ],
+    "named_reactions": [],
+    "target_compounds": [
+      "Cytochrome P450",
+      "binuclear complexes"
+    ],
+    "skills_required": [
+      "structural elucidation from MS",
+      "geometric calculations",
+      "3D schematic drawing"
+    ],
+    "original_language": "English",
+    "pdf_filename": "FILENAME_PLACEHOLDER.pdf",
+    "page": 61,
+    "end_page": 62
+  },
+  {
+    "problem_id": "2026-IChO-Prep-P21",
+    "problem_title": "Problem 21: Catalyst C",
+    "nation": "Uzbekistan",
+    "olympiad": "IChO Preparatory",
+    "year": 2026,
+    "subset": "Inorganic",
+    "problem_type": "Theoretical",
+    "themes": [
+      "homogeneous catalysis",
+      "hydrogenation",
+      "mass spectrometry",
+      "isotopic abundance"
+    ],
+    "named_reactions": [],
+    "target_compounds": [
+      "Wilkinson-type catalyst",
+      "triphenylphosphine oxide"
+    ],
+    "skills_required": [
+      "mass spectra fragment analysis",
+      "isotope ratio calculations",
+      "symmetry identification"
+    ],
+    "original_language": "English",
+    "pdf_filename": "FILENAME_PLACEHOLDER.pdf",
+    "page": 63,
+    "end_page": 65
+  },
+  {
+    "problem_id": "2026-IChO-Prep-P22",
+    "problem_title": "Problem 22: Transition metals in organometallic catalysis",
+    "nation": "Uzbekistan",
+    "olympiad": "IChO Preparatory",
+    "year": 2026,
+    "subset": "Inorganic",
+    "problem_type": "Theoretical",
+    "themes": [
+      "organometallic chemistry",
+      "catalytic cycles",
+      "electron counting",
+      "oxidative addition",
+      "reductive elimination"
+    ],
+    "named_reactions": [
+      "18-electron rule"
+    ],
+    "target_compounds": [
+      "Vaska's complex",
+      "metallocyclopropanes"
+    ],
+    "skills_required": [
+      "oxidation state determination",
+      "coordination number determination",
+      "catalytic cycle mapping"
+    ],
+    "original_language": "English",
+    "pdf_filename": "FILENAME_PLACEHOLDER.pdf",
+    "page": 66,
+    "end_page": 70
+  },
+  {
+    "problem_id": "2026-IChO-Prep-P23",
+    "problem_title": "Problem 23: HAT and XAT (HalAT)",
+    "nation": "Uzbekistan",
+    "olympiad": "IChO Preparatory",
+    "year": 2026,
+    "subset": "Organic",
+    "problem_type": "Theoretical",
+    "themes": [
+      "hydrogen atom transfer",
+      "halogen atom transfer",
+      "bond dissociation energy",
+      "nickel catalysis",
+      "radical chemistry"
+    ],
+    "named_reactions": [],
+    "target_compounds": [
+      "organonickel complexes"
+    ],
+    "skills_required": [
+      "interpreting MS isotopes",
+      "BDE comparison analysis",
+      "mechanism elucidation"
+    ],
+    "original_language": "English",
+    "pdf_filename": "FILENAME_PLACEHOLDER.pdf",
+    "page": 71,
+    "end_page": 75
+  },
+  {
+    "problem_id": "2026-IChO-Prep-P24",
+    "problem_title": "Problem 24: Anticancer complexes",
+    "nation": "Uzbekistan",
+    "olympiad": "IChO Preparatory",
+    "year": 2026,
+    "subset": "Multi-field",
+    "problem_type": "Theoretical",
+    "themes": [
+      "bioinorganic chemistry",
+      "DNA crosslinking",
+      "coordination compounds",
+      "drug design"
+    ],
+    "named_reactions": [],
+    "target_compounds": [
+      "Cisplatin",
+      "Carboplatin",
+      "Dicycloplatin",
+      "Camptothecin"
+    ],
+    "skills_required": [
+      "structure elucidation",
+      "hydrogen bonding analysis",
+      "hydrolysis resistance explanation"
+    ],
+    "original_language": "English",
+    "pdf_filename": "FILENAME_PLACEHOLDER.pdf",
+    "page": 76,
+    "end_page": 78
+  },
+  {
+    "problem_id": "2026-IChO-Prep-P25",
+    "problem_title": "Problem 25: The equilibria in DNA",
+    "nation": "Uzbekistan",
+    "olympiad": "IChO Preparatory",
+    "year": 2026,
+    "subset": "Physical",
+    "problem_type": "Theoretical",
+    "themes": [
+      "DNA dimerisation",
+      "pi-pi stacking",
+      "hydrogen bonding",
+      "thermodynamics",
+      "melting temperature"
+    ],
+    "named_reactions": [],
+    "target_compounds": [
+      "tetranucleotides"
+    ],
+    "skills_required": [
+      "van't Hoff analysis",
+      "stacking energy determination",
+      "predicting thermodynamic stability"
+    ],
+    "original_language": "English",
+    "pdf_filename": "FILENAME_PLACEHOLDER.pdf",
+    "page": 79,
+    "end_page": 80
+  },
+  {
+    "problem_id": "2026-IChO-Prep-P26",
+    "problem_title": "Problem 26: Sensing of acetaldehyde",
+    "nation": "Uzbekistan",
+    "olympiad": "IChO Preparatory",
+    "year": 2026,
+    "subset": "Analytical",
+    "problem_type": "Theoretical",
+    "themes": [
+      "fluorescent sensors",
+      "metabolic intermediate",
+      "reaction kinetics",
+      "cycloaddition"
+    ],
+    "named_reactions": [
+      "Michaelis-Menten",
+      "Diels-Alder"
+    ],
+    "target_compounds": [
+      "Acetaldehyde",
+      "fluorophore AAP-1"
+    ],
+    "skills_required": [
+      "Gibbs energy calculations",
+      "fluorescence data interpretation",
+      "structure determination from MS/NMR hints"
+    ],
+    "original_language": "English",
+    "pdf_filename": "FILENAME_PLACEHOLDER.pdf",
+    "page": 81,
+    "end_page": 83
+  },
+  {
+    "problem_id": "2026-IChO-Prep-P27",
+    "problem_title": "Problem 27: Archaeal metabolism",
+    "nation": "Uzbekistan",
+    "olympiad": "IChO Preparatory",
+    "year": 2026,
+    "subset": "Biochemistry",
+    "problem_type": "Theoretical",
+    "themes": [
+      "bioenergetics",
+      "redox potentials",
+      "quinones",
+      "elemental analysis"
+    ],
+    "named_reactions": [],
+    "target_compounds": [
+      "Menaquinone",
+      "Ubiquinone",
+      "menaquinol"
+    ],
+    "skills_required": [
+      "molar mass determination",
+      "elemental mass fraction logic",
+      "explaining evolutionary chemistry"
+    ],
+    "original_language": "English",
+    "pdf_filename": "FILENAME_PLACEHOLDER.pdf",
+    "page": 84,
+    "end_page": 86
+  },
+  {
+    "problem_id": "2026-IChO-Prep-P28",
+    "problem_title": "Problem 28: Non-archea-typal form of life",
+    "nation": "Uzbekistan",
+    "olympiad": "IChO Preparatory",
+    "year": 2026,
+    "subset": "Organic",
+    "problem_type": "Theoretical",
+    "themes": [
+      "chemical biomarkers",
+      "topology",
+      "membrane lipids",
+      "diagenesis"
+    ],
+    "named_reactions": [],
+    "target_compounds": [
+      "archaeal lipids"
+    ],
+    "skills_required": [
+      "knot notation interpretation",
+      "mathematical induction",
+      "isomer counting"
+    ],
+    "original_language": "English",
+    "pdf_filename": "FILENAME_PLACEHOLDER.pdf",
+    "page": 87,
+    "end_page": 89
+  },
+  {
+    "problem_id": "2026-IChO-Prep-P29",
+    "problem_title": "Problem 29: Archaea-ology",
+    "nation": "Uzbekistan",
+    "olympiad": "IChO Preparatory",
+    "year": 2026,
+    "subset": "Biochemistry",
+    "problem_type": "Theoretical",
+    "themes": [
+      "biopolymers",
+      "monosaccharide derivatives",
+      "methylation analysis",
+      "biosynthesis"
+    ],
+    "named_reactions": [
+      "Tollens reagent"
+    ],
+    "target_compounds": [
+      "archaeal biopolymers",
+      "UDP-sugars"
+    ],
+    "skills_required": [
+      "structural elucidation",
+      "methylation pattern logic",
+      "biochemical pathway deduction"
+    ],
+    "original_language": "English",
+    "pdf_filename": "FILENAME_PLACEHOLDER.pdf",
+    "page": 90,
+    "end_page": 92
+  },
+  {
+    "problem_id": "2026-IChO-Prep-P30",
+    "problem_title": "Problem 30: Pilaf ingredients",
+    "nation": "Uzbekistan",
+    "olympiad": "IChO Preparatory",
+    "year": 2026,
+    "subset": "Multi-field",
+    "problem_type": "Theoretical",
+    "themes": [
+      "food chemistry",
+      "total synthesis",
+      "terpenes",
+      "Maillard reaction",
+      "aroma compounds"
+    ],
+    "named_reactions": [
+      "Friedel-Crafts alkylation",
+      "Vilsmeier-Haack reaction",
+      "Tollens reagent",
+      "Fehling's reagent"
+    ],
+    "target_compounds": [
+      "Cuminaldehyde",
+      "beta-Carotene",
+      "Zeaxanthin",
+      "Alliin",
+      "Piperine"
+    ],
+    "skills_required": [
+      "synthetic scheme design",
+      "formula determination from combustion",
+      "enzyme classification"
+    ],
+    "original_language": "English",
+    "pdf_filename": "FILENAME_PLACEHOLDER.pdf",
+    "page": 93,
+    "end_page": 96
+  }
+]
