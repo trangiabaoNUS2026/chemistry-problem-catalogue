@@ -1,0 +1,401 @@
+[
+  {
+    "problem_id": "2026-IChO-Prep-P1",
+    "problem_title": "Khoja Nasreddin is now a chemist",
+    "nation": "Uzbekistan",
+    "olympiad": "IChO Preparatory",
+    "year": 2026,
+    "subset": "Inorganic",
+    "problem_type": "Theoretical",
+    "themes": [
+      "Thermal decomposition",
+      "Ozonides",
+      "Stoichiometry",
+      "Ideal gas law"
+    ],
+    "named_reactions": [],
+    "target_compounds": [
+      "Ammonium ozonide",
+      "Ammonium nitrate",
+      "Lithium ozonide"
+    ],
+    "skills_required": [
+      "Ideal gas law calculations",
+      "Stoichiometric analysis",
+      "Formula determination"
+    ],
+    "original_language": "English",
+    "pdf_filename": "icho_prep_2026/theoretical.pdf",
+    "page": 4,
+    "end_page": 5,
+    "has_solution": true,
+    "solution_page": 3,
+    "solution_pdf_filename": "icho_prep_2026/solutions.pdf"
+  },
+  {
+    "problem_id": "2026-IChO-Prep-P2",
+    "problem_title": "Avicenna",
+    "nation": "Uzbekistan",
+    "olympiad": "IChO Preparatory",
+    "year": 2026,
+    "subset": "Analytical",
+    "problem_type": "Theoretical",
+    "themes": [
+      "Qualitative inorganic analysis",
+      "Gravimetric analysis",
+      "Structure elucidation",
+      "Redox reactions"
+    ],
+    "named_reactions": [],
+    "target_compounds": [
+      "Bornite",
+      "Barium sulfate",
+      "Barium ferrate",
+      "Potassium ferrate"
+    ],
+    "skills_required": [
+      "Identification of unknown minerals",
+      "Balancing redox equations",
+      "Quantitative chemical logic"
+    ],
+    "original_language": "English",
+    "pdf_filename": "icho_prep_2026/theoretical.pdf",
+    "page": 6,
+    "end_page": 6,
+    "has_solution": true,
+    "solution_page": 6,
+    "solution_pdf_filename": "icho_prep_2026/solutions.pdf"
+  },
+  {
+    "problem_id": "2026-IChO-Prep-P3",
+    "problem_title": "Unusual inorganic synthesis",
+    "nation": "Uzbekistan",
+    "olympiad": "IChO Preparatory",
+    "year": 2026,
+    "subset": "Inorganic",
+    "problem_type": "Theoretical",
+    "themes": [
+      "Radioactive decay",
+      "Noble gas compounds",
+      "Electrolysis",
+      "Kinetics"
+    ],
+    "named_reactions": [],
+    "target_compounds": [
+      "Perbromic acid",
+      "Xenon tetrachloride",
+      "Perbromates"
+    ],
+    "skills_required": [
+      "Radioactive decay pathways",
+      "First-order kinetics calculations",
+      "Faraday's laws of electrolysis"
+    ],
+    "original_language": "English",
+    "pdf_filename": "icho_prep_2026/theoretical.pdf",
+    "page": 7,
+    "end_page": 8,
+    "has_solution": true,
+    "solution_page": 9,
+    "solution_pdf_filename": "icho_prep_2026/solutions.pdf"
+  },
+  {
+    "problem_id": "2026-IChO-Prep-P4",
+    "problem_title": "Nanozymes",
+    "nation": "Uzbekistan",
+    "olympiad": "IChO Preparatory",
+    "year": 2026,
+    "subset": "Physical",
+    "problem_type": "Theoretical",
+    "themes": [
+      "Nanozymes",
+      "Enzyme kinetics",
+      "Mass spectrometry",
+      "Surface chemistry"
+    ],
+    "named_reactions": [
+      "Michaelis-Menten kinetics"
+    ],
+    "target_compounds": [
+      "Magnetite",
+      "C60 Fullerene",
+      "Para-nitrophenyl phosphate"
+    ],
+    "skills_required": [
+      "Interpretation of mass spectra",
+      "Michaelis-Menten parameters calculation",
+      "Geometric modeling of nanoparticles"
+    ],
+    "original_language": "English",
+    "pdf_filename": "icho_prep_2026/theoretical.pdf",
+    "page": 9,
+    "end_page": 10,
+    "has_solution": true,
+    "solution_page": 13,
+    "solution_pdf_filename": "icho_prep_2026/solutions.pdf"
+  },
+  {
+    "problem_id": "2026-IChO-Prep-P5",
+    "problem_title": "Haber–Bosch process",
+    "nation": "Uzbekistan",
+    "olympiad": "IChO Preparatory",
+    "year": 2026,
+    "subset": "Physical",
+    "problem_type": "Theoretical",
+    "themes": [
+      "Chemical equilibrium",
+      "Thermodynamics",
+      "Heterogeneous catalysis",
+      "Surface area"
+    ],
+    "named_reactions": [],
+    "target_compounds": [
+      "Ammonia",
+      "Iron catalyst"
+    ],
+    "skills_required": [
+      "Equilibrium constant temperature dependence",
+      "Yield calculations",
+      "Surface area and rate proportionality"
+    ],
+    "original_language": "English",
+    "pdf_filename": "icho_prep_2026/theoretical.pdf",
+    "page": 11,
+    "end_page": 13,
+    "has_solution": true,
+    "solution_page": 15,
+    "solution_pdf_filename": "icho_prep_2026/solutions.pdf"
+  },
+  {
+    "problem_id": "2025-IChO-Prep-P1",
+    "problem_title": "Stereocamelstry",
+    "nation": "UAE",
+    "olympiad": "IChO Preparatory",
+    "year": 2025,
+    "subset": "Multi-field",
+    "problem_type": "Theoretical",
+    "themes": [
+      "Chirality",
+      "Symmetry",
+      "Stereoisomerism",
+      "Conformational analysis"
+    ],
+    "named_reactions": [],
+    "target_compounds": [],
+    "skills_required": [
+      "Identification of symmetry elements",
+      "Drawing enantiomers",
+      "Point group intuition"
+    ],
+    "original_language": "English",
+    "pdf_filename": "icho_prep_2025/theoretical.pdf",
+    "page": 12,
+    "end_page": 17,
+    "has_solution": true,
+    "solution_page": 2,
+    "solution_pdf_filename": "icho_prep_2025/solutions.pdf"
+  },
+  {
+    "problem_id": "2025-IChO-Prep-P2",
+    "problem_title": "Mirror, mirror plane on the wall, who’s the deadliest of them all?",
+    "nation": "UAE",
+    "olympiad": "IChO Preparatory",
+    "year": 2025,
+    "subset": "Organic",
+    "problem_type": "Theoretical",
+    "themes": [
+      "Cyclohexane derivatives",
+      "Reaction mechanisms",
+      "Stereoisomers",
+      "Toxicity"
+    ],
+    "named_reactions": [
+      "Free-radical halogenation"
+    ],
+    "target_compounds": [
+      "Hexachlorocyclohexane",
+      "Lindane",
+      "Benzene"
+    ],
+    "skills_required": [
+      "Analyzing chair conformations",
+      "Symmetry analysis",
+      "Interpreting MS isotope patterns"
+    ],
+    "original_language": "English",
+    "pdf_filename": "icho_prep_2025/theoretical.pdf",
+    "page": 18,
+    "end_page": 22,
+    "has_solution": true,
+    "solution_page": 8,
+    "solution_pdf_filename": "icho_prep_2025/solutions.pdf"
+  },
+  {
+    "problem_id": "2025-IChO-Prep-P5",
+    "problem_title": "Stereochemical models",
+    "nation": "UAE",
+    "olympiad": "IChO Preparatory",
+    "year": 2025,
+    "subset": "Organic",
+    "problem_type": "Theoretical",
+    "themes": [
+      "Stereoselective synthesis",
+      "Felkin-Anh model",
+      "Zimmerman-Traxler model",
+      "Aldol reaction"
+    ],
+    "named_reactions": [
+      "Aldol reaction",
+      "Hydroboration-Oxidation"
+    ],
+    "target_compounds": [
+      "Boron enolates"
+    ],
+    "skills_required": [
+      "Predicting major diastereomers",
+      "Drawing transition states",
+      "Newman projection analysis"
+    ],
+    "original_language": "English",
+    "pdf_filename": "icho_prep_2025/theoretical.pdf",
+    "page": 29,
+    "end_page": 32,
+    "has_solution": true,
+    "solution_page": 19,
+    "solution_pdf_filename": "icho_prep_2025/solutions.pdf"
+  },
+  {
+    "problem_id": "2025-IChO-Prep-P16",
+    "problem_title": "Fullerenes and polyhedra",
+    "nation": "UAE",
+    "olympiad": "IChO Preparatory",
+    "year": 2025,
+    "subset": "Inorganic",
+    "problem_type": "Theoretical",
+    "themes": [
+      "Carbon allotropes",
+      "Graph theory",
+      "Topology",
+      "Mass spectrometry"
+    ],
+    "named_reactions": [],
+    "target_compounds": [
+      "Buckminsterfullerene",
+      "C60",
+      "C70"
+    ],
+    "skills_required": [
+      "Applying Euler's formula",
+      "Isotope ratio calculations",
+      "Statistical weighting in MS"
+    ],
+    "original_language": "English",
+    "pdf_filename": "icho_prep_2025/theoretical.pdf",
+    "page": 75,
+    "end_page": 80,
+    "has_solution": true,
+    "solution_page": 62,
+    "solution_pdf_filename": "icho_prep_2025/solutions.pdf"
+  },
+  {
+    "problem_id": "2025-IChO-Prep-P17",
+    "problem_title": "Photocatalysis",
+    "nation": "UAE",
+    "olympiad": "IChO Preparatory",
+    "year": 2025,
+    "subset": "Physical",
+    "problem_type": "Theoretical",
+    "themes": [
+      "Semiconductors",
+      "Redox chemistry",
+      "Quantum yield",
+      "Water splitting"
+    ],
+    "named_reactions": [],
+    "target_compounds": [
+      "Titanium dioxide",
+      "Zinc oxide"
+    ],
+    "skills_required": [
+      "Energy band diagram analysis",
+      "Quantum yield calculations",
+      "Electrochemical potential evaluation"
+    ],
+    "original_language": "English",
+    "pdf_filename": "icho_prep_2025/theoretical.pdf",
+    "page": 81,
+    "end_page": 84,
+    "has_solution": true,
+    "solution_page": 66,
+    "solution_pdf_filename": "icho_prep_2025/solutions.pdf"
+  },
+  {
+    "problem_id": "2025-IChO-Prep-Pr1",
+    "problem_title": "Qualitative analysis of organic compounds",
+    "nation": "UAE",
+    "olympiad": "IChO Preparatory",
+    "year": 2025,
+    "subset": "Organic",
+    "problem_type": "Practical / Lab Work",
+    "themes": [
+      "Qualitative analysis",
+      "Functional group testing",
+      "Precipitation reactions"
+    ],
+    "named_reactions": [
+      "Benedict's test (similar)",
+      "Fehling's test (similar)"
+    ],
+    "target_compounds": [
+      "Glucose",
+      "Glycine",
+      "Oxalic acid",
+      "Formic acid",
+      "Acetone"
+    ],
+    "skills_required": [
+      "Observation of color changes",
+      "Handling corrosive reagents",
+      "Systematic identification logic"
+    ],
+    "original_language": "English",
+    "pdf_filename": "icho_prep_2025/experimental.pdf",
+    "page": 3,
+    "end_page": 10,
+    "has_solution": true,
+    "solution_page": 103,
+    "solution_pdf_filename": "icho_prep_2025/solutions.pdf"
+  },
+  {
+    "problem_id": "2025-IChO-Prep-Pr4",
+    "problem_title": "Synthesis and characterisation of a paramagnetic cobalt acetylacetonate complex",
+    "nation": "UAE",
+    "olympiad": "IChO Preparatory",
+    "year": 2025,
+    "subset": "Inorganic",
+    "problem_type": "Practical / Lab Work",
+    "themes": [
+      "Coordination compounds",
+      "Magnetochemistry",
+      "Spectrophotometry"
+    ],
+    "named_reactions": [],
+    "target_compounds": [
+      "Cobalt(II) acetylacetonate",
+      "Cobalt(III) acetylacetonate"
+    ],
+    "skills_required": [
+      "Synthetic chemistry technique",
+      "Magnetic susceptibility measurement",
+      "UV-Vis spectroscopy"
+    ],
+    "original_language": "English",
+    "pdf_filename": "icho_prep_2025/experimental.pdf",
+    "page": 27,
+    "end_page": 38,
+    "has_solution": true,
+    "solution_page": 113,
+    "solution_pdf_filename": "icho_prep_2025/solutions.pdf"
+  }
+]
+]
